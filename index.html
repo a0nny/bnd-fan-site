@@ -1,835 +1,1118 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>BOYNEXTDOOR — FAN ARCHIVE</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #F5FBFE;
-      color: #172033;
-      font-family: Arial, "Noto Sans TC", sans-serif;
-    }
-
-    /* ===== NAV ===== */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      height: 72px;
-      padding: 0 6%;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background: rgba(245, 251, 254, 0.94);
-      backdrop-filter: blur(12px);
-
-      border-bottom: 1px solid #D6ECF5;
-    }
-
-    .logo {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #01A3DB;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #53657E;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      transition: 0.25s;
-    }
-
-    .nav-links a:hover {
-      color: #01A3DB;
-    }
-
-    /* ===== HERO ===== */
-
-    .hero {
-      min-height: calc(100vh - 72px);
-
-      padding: 8vh 6% 5vh;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      background:
-        radial-gradient(
-          circle at 85% 25%,
-          rgba(1, 163, 219, 0.16),
-          transparent 28%
-        ),
-        #F5FBFE;
-    }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .mini {
-      font-size: 10px;
-      color: #7890AE;
-      letter-spacing: 2px;
-    }
-
-    .hero-main {
-      margin-top: 50px;
-    }
-
-    .korean {
-      color: #01A3DB;
-      font-size: 12px;
-      letter-spacing: 4px;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(55px, 11vw, 145px);
-      line-height: 0.83;
-      letter-spacing: -7px;
-      font-weight: 800;
-      color: #15243A;
-    }
-
-    .hero-description {
-      max-width: 450px;
-      margin-top: 35px;
-
-      font-size: 13px;
-      line-height: 2;
-      color: #6C7D95;
-    }
-
-    .hero-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      padding-top: 20px;
-      border-top: 1px solid #D6ECF5;
-    }
-
-    .scroll {
-      color: #01A3DB;
-      animation: floating 1.8s infinite;
-    }
-
-    @keyframes floating {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(5px);
-      }
-    }
-
-    /* ===== SECTION ===== */
-
-    section {
-      padding: 110px 6%;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-
-      padding-bottom: 16px;
-      margin-bottom: 45px;
-
-      border-bottom: 1px solid #CFE5EF;
-    }
-
-    .section-header h2 {
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-
-    .section-header span {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: #7D90A8;
-    }
-
-    /* ===== LATEST ===== */
-
-    .latest {
-      background: #EAF8FD;
-    }
-
-    .latest-card {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-
-      min-height: 330px;
-
-      border: 1px solid #CDE7F1;
-      background: #FFFFFF;
-    }
-
-    .latest-image {
-      min-height: 330px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #A9E2F5,
-          #01A3DB
-        );
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #FFFFFF;
-      font-size: 12px;
-      letter-spacing: 3px;
-    }
-
-    .latest-content {
-      padding: 45px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .date {
-      color: #01A3DB;
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
-    .latest-content h3 {
-      margin-top: 18px;
-      font-size: 30px;
-      line-height: 1.25;
-    }
-
-    .latest-content p {
-      margin-top: 18px;
-      color: #71839A;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    /* ===== MEMBERS ===== */
-
-    .members {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .member {
-      position: relative;
-
-      aspect-ratio: 1 / 1.18;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          145deg,
-          #B9E8F7,
-          #01A3DB
-        );
-
-      transition: 0.3s;
-
-      cursor: pointer;
-    }
-
-    .member:hover {
-      transform: translateY(-5px);
-    }
-
-    .member-number {
-      position: absolute;
-      top: 18px;
-      left: 20px;
-
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .member-info {
-      position: absolute;
-      left: 22px;
-      bottom: 22px;
-
-      color: white;
-    }
-
-    .member-info h3 {
-      font-size: 25px;
-      letter-spacing: 1px;
-    }
-
-    .member-info p {
-      margin-top: 5px;
-
-      font-size: 10px;
-      letter-spacing: 2px;
-
-      opacity: 0.85;
-    }
-
-    /* ===== ARCHIVE ===== */
-
-    .archive {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-
-      border: 1px solid #CDE1EB;
-    }
-
-    .archive-item {
-      min-height: 190px;
-
-      padding: 35px;
-
-      background: #FFFFFF;
-
-      border-right: 1px solid #CDE1EB;
-      border-bottom: 1px solid #CDE1EB;
-
-      transition: 0.3s;
-
-      cursor: pointer;
-    }
-
-    .archive-item:hover {
-      background: #EAF8FD;
-    }
-
-    .archive-item small {
-      color: #01A3DB;
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
-    .archive-item h3 {
-      margin-top: 30px;
-
-      font-size: 22px;
-      font-weight: 500;
-    }
-
-    .archive-item p {
-      margin-top: 12px;
-
-      color: #8293A9;
-      font-size: 12px;
-    }
-
-    /* ===== ABOUT ===== */
-
-    .about {
-      background: #082D40;
-      color: white;
-    }
-
-    .about .section-header {
-      border-color: rgba(255,255,255,0.2);
-    }
-
-    .about .section-header span {
-      color: #8FCDE3;
-    }
-
-    .about-text {
-      max-width: 720px;
-
-      font-size: 18px;
-      line-height: 2;
-
-      color: #C7E3EE;
-    }
-
-    /* ===== FOOTER ===== */
-
-    footer {
-      padding: 45px 6%;
-
-      display: flex;
-      justify-content: space-between;
-
-      background: #061F2C;
-
-      color: #6F9EB1;
-
-      font-size: 9px;
-      letter-spacing: 2px;
-    }
-
-    /* ===== MOBILE ===== */
-
-    @media (max-width: 700px) {
-
-      nav {
-        padding: 0 5%;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
-      .nav-links a {
-        font-size: 9px;
-      }
-
-      .hero {
-        padding: 7vh 5% 5vh;
-      }
-
-      .hero h1 {
-        font-size: 19vw;
-        letter-spacing: -3px;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-
-      .section-header h2 {
-        font-size: 30px;
-      }
-
-      .latest-card {
-        grid-template-columns: 1fr;
-      }
-
-      .latest-image {
-        min-height: 230px;
-      }
-
-      .latest-content {
-        padding: 30px;
-      }
-
-      .members {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .member-info {
-        left: 13px;
-        bottom: 15px;
-      }
-
-      .member-info h3 {
-        font-size: 16px;
-      }
-
-      .archive {
-        grid-template-columns: 1fr;
-      }
-
-      .archive-item {
-        border-right: none;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOYNEXTDOOR 記憶資料庫</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --blue: #01A3DB;
+  --blue-dark: #08799F;
+  --blue-light: #EAF8FD;
+  --blue-pale: #F5FBFE;
+  --line: #D5EAF2;
+  --text: #183040;
+  --gray: #718493;
+  --white: #FFFFFF;
+}
+
+body {
+  background: var(--blue-pale);
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans TC",
+    "PingFang TC",
+    "Microsoft JhengHei",
+    sans-serif;
+}
+
+/* =========================
+   導覽列
+========================= */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 70px;
+  padding: 0 6%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(245, 251, 254, 0.95);
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  color: var(--blue);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+/* =========================
+   首頁
+========================= */
+
+.hero {
+  min-height: calc(100vh - 70px);
+  padding: 8vh 6% 5vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(1,163,219,0.15),
+      transparent 30%
+    );
+}
+
+.hero-small {
+  display: flex;
+  justify-content: space-between;
+
+  color: #78909C;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.hero-content {
+  margin-top: 60px;
+}
+
+.hero-korean {
+  color: var(--blue);
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 9vw, 125px);
+  line-height: 0.9;
+  letter-spacing: -5px;
+  font-weight: 800;
+}
+
+.hero-title-cn {
+  margin-top: 25px;
+
+  color: var(--blue);
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 600;
+}
+
+.hero-description {
+  max-width: 520px;
+  margin-top: 25px;
+
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+
+  color: #78909C;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   共用區塊
+========================= */
+
+section {
+  padding: 100px 6%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.section-heading h2 {
+  font-size: 34px;
+}
+
+.section-heading span {
+  color: #78909C;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   日期記憶
+========================= */
+
+.memory-section {
+  background: var(--blue-light);
+}
+
+.date-box {
+  padding: 35px;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.date-title {
+  color: var(--gray);
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.date-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-controls select {
+  min-width: 140px;
+  padding: 13px 15px;
+
+  border: 1px solid var(--line);
+  background: white;
+
+  color: var(--text);
+  font-size: 14px;
+}
+
+.search-button {
+  padding: 13px 28px;
+
+  border: none;
+  background: var(--blue);
+  color: white;
+
+  font-size: 13px;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.search-button:hover {
+  background: var(--blue-dark);
+}
+
+.date-result {
+  margin-top: 25px;
+
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* =========================
+   功能入口
+========================= */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.menu-card {
+  min-height: 180px;
+  padding: 30px;
+
+  background: white;
+  border: 1px solid var(--line);
+
+  text-decoration: none;
+  color: var(--text);
+
+  transition: 0.25s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue);
+  background: #FCFEFF;
+}
+
+.menu-number {
+  color: var(--blue);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.menu-card h3 {
+  margin-top: 35px;
+  font-size: 21px;
+}
+
+.menu-card p {
+  margin-top: 10px;
+  color: var(--gray);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =========================
+   成員
+========================= */
+
+.members-section {
+  background: white;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.member-card {
+  min-height: 220px;
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background:
+    linear-gradient(
+      145deg,
+      #DDF5FC,
+      #8DD8EF
+    );
+
+  color: white;
+
+  text-decoration: none;
+
+  transition: 0.25s;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-number {
+  margin-bottom: auto;
+
+  color: rgba(255,255,255,0.8);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.member-card h3 {
+  font-size: 25px;
+}
+
+.member-card p {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* =========================
+   關於
+========================= */
+
+.about {
+  background: #083A4D;
+  color: white;
+}
+
+.about .section-heading {
+  border-color: rgba(255,255,255,0.2);
+}
+
+.about .section-heading span {
+  color: #9CCDDD;
+}
+
+.about-text {
+  max-width: 700px;
+
+  color: #C9E4ED;
+  font-size: 16px;
+  line-height: 2;
+}
+
+/* =========================
+   語言
+========================= */
+
+.language-box {
+  margin-top: 35px;
+
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.language {
+  padding: 9px 15px;
+
+  border: 1px solid var(--line);
+  background: white;
+
+  color: var(--gray);
+  font-size: 11px;
+}
+
+.language.active {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* =========================
+   管理員
+========================= */
+
+.admin {
+  text-align: center;
+  padding: 45px 6%;
+
+  border-top: 1px solid var(--line);
+  background: #F0F9FC;
+}
+
+.admin p {
+  color: #78909C;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.admin a {
+  color: var(--blue);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+  padding: 35px 6%;
+
+  display: flex;
+  justify-content: space-between;
+
+  background: #062B3A;
+
+  color: #75A8B9;
+
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+/* =========================
+   手機版
+========================= */
+
+@media (max-width: 700px) {
+
+  nav {
+    padding: 0 5%;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 9px;
+  }
+
+  .hero {
+    padding: 7vh 5% 5vh;
+  }
+
+  .hero h1 {
+    font-size: 18vw;
+    letter-spacing: -3px;
+  }
+
+  section {
+    padding: 70px 5%;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .member-card {
+    min-height: 170px;
+    padding: 17px;
+  }
+
+  .member-card h3 {
+    font-size: 17px;
+  }
+
+  .date-box {
+    padding: 22px;
+  }
+
+  .date-controls {
+    flex-direction: column;
+  }
+
+  .date-controls select,
+  .search-button {
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
 </head>
+
 
 <body>
 
-  <nav>
+<!-- 導覽列 -->
 
-    <div class="logo">
-      BND / ARCHIVE
+<nav>
+
+  <div class="logo">
+    BOYNEXTDOOR 記憶資料庫
+  </div>
+
+  <ul class="nav-links">
+
+    <li>
+      <a href="#memory">日期記憶</a>
+    </li>
+
+    <li>
+      <a href="#members">成員</a>
+    </li>
+
+    <li>
+      <a href="#archive">資料庫</a>
+    </li>
+
+  </ul>
+
+</nav>
+
+
+<!-- 首頁 -->
+
+<header class="hero">
+
+  <div class="hero-small">
+
+    <span>
+      FAN-MADE DATABASE
+    </span>
+
+    <span>
+      2023.05.30 — NOW
+    </span>
+
+  </div>
+
+
+  <div class="hero-content">
+
+    <div class="hero-korean">
+      보이넥스트도어
     </div>
 
-    <ul class="nav-links">
+    <h1>
+      BOYNEXT<br>
+      DOOR
+    </h1>
 
-      <li>
-        <a href="#latest">LATEST</a>
-      </li>
-
-      <li>
-        <a href="#members">MEMBERS</a>
-      </li>
-
-      <li>
-        <a href="#archive">ARCHIVE</a>
-      </li>
-
-      <li>
-        <a href="#about">ABOUT</a>
-      </li>
-
-    </ul>
-
-  </nav>
-
-
-  <main class="hero">
-
-    <div class="hero-top">
-
-      <span class="mini">
-        FAN ARCHIVE · 2026
-      </span>
-
-      <span class="mini">
-        ONEDOOR
-      </span>
-
+    <div class="hero-title-cn">
+      記憶資料庫
     </div>
 
-
-    <div class="hero-main">
-
-      <div class="korean">
-        보이넥스트도어
-      </div>
-
-      <h1>
-        BOYNEXT<br>
-        DOOR
-      </h1>
-
-      <p class="hero-description">
-        A fan-made archive dedicated to
-        BOYNEXTDOOR — their music, moments,
-        activities and memories shared with ONEDOOR.
-      </p>
-
-    </div>
-
-
-    <div class="hero-bottom">
-
-      <span class="mini">
-        WHO'S THERE?
-      </span>
-
-      <span class="mini scroll">
-        ↓ SCROLL
-      </span>
-
-    </div>
-
-  </main>
-
-
-  <section class="latest" id="latest">
-
-    <div class="section-header">
-
-      <h2>
-        Latest
-      </h2>
-
-      <span>
-        RECENT UPDATE
-      </span>
-
-    </div>
-
-
-    <div class="latest-card">
-
-      <div class="latest-image">
-        IMAGE
-      </div>
-
-      <div class="latest-content">
-
-        <span class="date">
-          2026.09.04
-        </span>
-
-        <h3>
-          BOYNEXTDOOR
-          <br>
-          FAN ARCHIVE
-        </h3>
-
-        <p>
-          Welcome to our little archive.
-          More memories, schedules and updates
-          will be added here.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section id="members">
-
-    <div class="section-header">
-
-      <h2>
-        Members
-      </h2>
-
-      <span>
-        06 MEMBERS
-      </span>
-
-    </div>
-
-
-    <div class="members">
-
-      <div class="member">
-
-        <span class="member-number">
-          01
-        </span>
-
-        <div class="member-info">
-          <h3>SUNGHO</h3>
-          <p>성호</p>
-        </div>
-
-      </div>
-
-
-      <div class="member">
-
-        <span class="member-number">
-          02
-        </span>
-
-        <div class="member-info">
-          <h3>RIWOO</h3>
-          <p>리우</p>
-        </div>
-
-      </div>
-
-
-      <div class="member">
-
-        <span class="member-number">
-          03
-        </span>
-
-        <div class="member-info">
-          <h3>JAEHYUN</h3>
-          <p>재현</p>
-        </div>
-
-      </div>
-
-
-      <div class="member">
-
-        <span class="member-number">
-          04
-        </span>
-
-        <div class="member-info">
-          <h3>TAESAN</h3>
-          <p>태산</p>
-        </div>
-
-      </div>
-
-
-      <div class="member">
-
-        <span class="member-number">
-          05
-        </span>
-
-        <div class="member-info">
-          <h3>LEEHAN</h3>
-          <p>이한</p>
-        </div>
-
-      </div>
-
-
-      <div class="member">
-
-        <span class="member-number">
-          06
-        </span>
-
-        <div class="member-info">
-          <h3>WOONHAK</h3>
-          <p>운학</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section id="archive">
-
-    <div class="section-header">
-
-      <h2>
-        Archive
-      </h2>
-
-      <span>
-        ONEDOOR'S RECORD
-      </span>
-
-    </div>
-
-
-    <div class="archive">
-
-      <div class="archive-item">
-
-        <small>
-          01 / DISCOGRAPHY
-        </small>
-
-        <h3>
-          Albums & Songs →
-        </h3>
-
-        <p>
-          Explore their music.
-        </p>
-
-      </div>
-
-
-      <div class="archive-item">
-
-        <small>
-          02 / SCHEDULE
-        </small>
-
-        <h3>
-          Events & Activities →
-        </h3>
-
-        <p>
-          Keep track of every moment.
-        </p>
-
-      </div>
-
-
-      <div class="archive-item">
-
-        <small>
-          03 / GALLERY
-        </small>
-
-        <h3>
-          Photos & Memories →
-        </h3>
-
-        <p>
-          A collection of our memories.
-        </p>
-
-      </div>
-
-
-      <div class="archive-item">
-
-        <small>
-          04 / VIDEOS
-        </small>
-
-        <h3>
-          MV & Contents →
-        </h3>
-
-        <p>
-          Music videos and contents.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="about" id="about">
-
-    <div class="section-header">
-
-      <h2>
-        About
-      </h2>
-
-      <span>
-        FAN-MADE
-      </span>
-
-    </div>
-
-
-    <p class="about-text">
-
-      This is a fan-made archive created
-      for BOYNEXTDOOR and ONEDOOR.
-
-      <br><br>
-
-      This website is not affiliated with
-      KOZ Entertainment or BOYNEXTDOOR.
-
+    <p class="hero-description">
+      從 2023 年 5 月 30 日開始，
+      收藏、整理並記錄 BOYNEXTDOOR
+      與 ONEDOOR 一起走過的每一個瞬間。
     </p>
 
-  </section>
+  </div>
 
 
-  <footer>
+  <div class="hero-bottom">
 
     <span>
-      BOYNEXTDOOR FAN ARCHIVE
+      WHO'S THERE?
     </span>
 
     <span>
-      MADE WITH ♡ FOR ONEDOOR
+      ↓ 向下探索
     </span>
 
-  </footer>
+  </div>
+
+</header>
+
+
+<!-- 日期記憶 -->
+
+<section class="memory-section" id="memory">
+
+  <div class="section-heading">
+
+    <h2>
+      日期記憶
+    </h2>
+
+    <span>
+      2023.05.30 — NOW
+    </span>
+
+  </div>
+
+
+  <div class="date-box">
+
+    <div class="date-title">
+      選擇日期，查看那一天的所有紀錄
+    </div>
+
+
+    <div class="date-controls">
+
+      <select id="year">
+        <option value="">年份</option>
+      </select>
+
+      <select id="month">
+        <option value="">月份</option>
+      </select>
+
+      <select id="day">
+        <option value="">日期</option>
+      </select>
+
+      <button class="search-button" onclick="searchDate()">
+        查詢
+      </button>
+
+    </div>
+
+
+    <div class="date-result" id="dateResult">
+      請選擇日期。
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 資料庫入口 -->
+
+<section id="archive">
+
+  <div class="section-heading">
+
+    <h2>
+      資料庫
+    </h2>
+
+    <span>
+      ARCHIVE
+    </span>
+
+  </div>
+
+
+  <div class="menu-grid">
+
+    <a class="menu-card" href="#members">
+
+      <div class="menu-number">
+        01
+      </div>
+
+      <h3>
+        成員資料
+      </h3>
+
+      <p>
+        六位成員的基本資料、TMI、
+        代表 Emoji 與個人紀錄。
+      </p>
+
+    </a>
+
+
+    <a class="menu-card" href="#albums">
+
+      <div class="menu-number">
+        02
+      </div>
+
+      <h3>
+        歷代專輯
+      </h3>
+
+      <p>
+        從出道至今的音樂作品與專輯紀錄。
+      </p>
+
+    </a>
+
+
+    <a class="menu-card" href="#stages">
+
+      <div class="menu-number">
+        03
+      </div>
+
+      <h3>
+        歷年舞台
+      </h3>
+
+      <p>
+        整理各年度音樂節目與活動舞台。
+      </p>
+
+    </a>
+
+
+    <a class="menu-card" href="#social">
+
+      <div class="menu-number">
+        04
+      </div>
+
+      <h3>
+        社群紀錄
+      </h3>
+
+      <p>
+        YouTube、Weverse、X、
+        Instagram、TikTok、抖音。
+      </p>
+
+    </a>
+
+
+    <a class="menu-card" href="#memory">
+
+      <div class="menu-number">
+        05
+      </div>
+
+      <h3>
+        每日記憶
+      </h3>
+
+      <p>
+        查看特定日期發生的所有事件。
+      </p>
+
+    </a>
+
+
+    <a class="menu-card" href="#language">
+
+      <div class="menu-number">
+        06
+      </div>
+
+      <h3>
+        語言
+      </h3>
+
+      <p>
+        繁體中文、简体中文、
+        English、日本語、한국어。
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- 成員 -->
+
+<section class="members-section" id="members">
+
+  <div class="section-heading">
+
+    <h2>
+      成員
+    </h2>
+
+    <span>
+      06 MEMBERS
+    </span>
+
+  </div>
+
+
+  <div class="member-grid">
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        01
+      </span>
+
+      <h3>
+        成淏
+      </h3>
+
+      <p>
+        SUNGHO · 성호
+      </p>
+
+    </a>
+
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        02
+      </span>
+
+      <h3>
+        理雨
+      </h3>
+
+      <p>
+        RIWOO · 리우
+      </p>
+
+    </a>
+
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        03
+      </span>
+
+      <h3>
+        宰鉉
+      </h3>
+
+      <p>
+        JAEHYUN · 재현
+      </p>
+
+    </a>
+
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        04
+      </span>
+
+      <h3>
+        東旼
+      </h3>
+
+      <p>
+        TAESAN · 태산
+      </p>
+
+    </a>
+
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        05
+      </span>
+
+      <h3>
+        李翰
+      </h3>
+
+      <p>
+        LEEHAN · 이한
+      </p>
+
+    </a>
+
+
+    <a class="member-card" href="#">
+
+      <span class="member-number">
+        06
+      </span>
+
+      <h3>
+        雲鶴
+      </h3>
+
+      <p>
+        WOONHAK · 운학
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- 語言 -->
+
+<section id="language">
+
+  <div class="section-heading">
+
+    <h2>
+      語言
+    </h2>
+
+    <span>
+      LANGUAGE
+    </span>
+
+  </div>
+
+
+  <p style="color:#718493; line-height:1.8;">
+    網站預設使用繁體中文。
+    其他語言版本之後可以從管理後台進行編輯。
+  </p>
+
+
+  <div class="language-box">
+
+    <div class="language active">
+      繁體中文
+    </div>
+
+    <div class="language">
+      简体中文
+    </div>
+
+    <div class="language">
+      English
+    </div>
+
+    <div class="language">
+      日本語
+    </div>
+
+    <div class="language">
+      한국어
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 關於 -->
+
+<section class="about">
+
+  <div class="section-heading">
+
+    <h2>
+      關於本站
+    </h2>
+
+    <span>
+      ABOUT
+    </span>
+
+  </div>
+
+
+  <p class="about-text">
+
+    BOYNEXTDOOR 記憶資料庫是一個由粉絲建立的非官方資料整理網站，
+    用來收藏 BOYNEXTDOOR 自 2023 年 5 月 30 日出道以來的活動、
+    音樂、舞台、社群內容與珍貴記憶。
+
+    <br><br>
+
+    本站與 BOYNEXTDOOR 及 KOZ Entertainment 無隸屬關係。
+
+  </p>
+
+</section>
+
+
+<!-- 管理員 -->
+
+<div class="admin">
+
+  <p>
+    BOYNEXTDOOR 記憶資料庫
+  </p>
+
+  <a href="#">
+    管理員登入 →
+  </a>
+
+</div>
+
+
+<!-- Footer -->
+
+<footer>
+
+  <span>
+    BOYNEXTDOOR 記憶資料庫
+  </span>
+
+  <span>
+    MADE WITH ♡ FOR ONEDOOR
+  </span>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   建立日期選單
+========================= */
+
+const yearSelect = document.getElementById("year");
+const monthSelect = document.getElementById("month");
+const daySelect = document.getElementById("day");
+
+const currentYear = new Date().getFullYear();
+
+for (let year = 2023; year <= currentYear; year++) {
+
+  const option = document.createElement("option");
+
+  option.value = year;
+  option.textContent = year + " 年";
+
+  yearSelect.appendChild(option);
+
+}
+
+
+for (let month = 1; month <= 12; month++) {
+
+  const option = document.createElement("option");
+
+  option.value = month;
+  option.textContent = month + " 月";
+
+  monthSelect.appendChild(option);
+
+}
+
+
+for (let day = 1; day <= 31; day++) {
+
+  const option = document.createElement("option");
+
+  option.value = day;
+  option.textContent = day + " 日";
+
+  daySelect.appendChild(option);
+
+}
+
+
+/* =========================
+   日期查詢
+========================= */
+
+function searchDate() {
+
+  const year = yearSelect.value;
+  const month = monthSelect.value;
+  const day = daySelect.value;
+
+  const result = document.getElementById("dateResult");
+
+  if (!year || !month || !day) {
+
+    result.textContent = "請先選擇完整的日期。";
+    return;
+
+  }
+
+  result.innerHTML =
+    "<strong>" +
+    year +
+    " 年 " +
+    month +
+    " 月 " +
+    day +
+    " 日</strong><br><br>" +
+    "目前這一天還沒有建立紀錄。<br>" +
+    "之後可以從管理後台新增這一天的消息、社群貼文、舞台、照片等內容。";
+
+}
+
+</script>
 
 </body>
 </html>
