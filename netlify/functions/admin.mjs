@@ -56,17 +56,13 @@ function verifyToken(token) {
       .update(payload)
       .digest("base64url");
 
-    if (signature !== expected) {
-      return false;
-    }
+    if (signature !== expected) return false;
 
     const data = JSON.parse(
       Buffer.from(payload, "base64url").toString()
     );
 
-    if (Date.now() > data.exp) {
-      return false;
-    }
+    if (Date.now() > data.exp) return false;
 
     return true;
 
@@ -76,24 +72,17 @@ function verifyToken(token) {
 }
 
 function getCookie(request) {
-  const cookies =
-    request.headers.get("cookie") || "";
+  const cookies = request.headers.get("cookie") || "";
 
   const match = cookies.match(
-    new RegExp(
-      "(?:^|; )" +
-      COOKIE_NAME +
-      "=([^;]*)"
-    )
+    new RegExp("(?:^|; )" + COOKIE_NAME + "=([^;]*)")
   );
 
   return match ? match[1] : null;
 }
 
 function authorized(request) {
-  return verifyToken(
-    getCookie(request)
-  );
+  return verifyToken(getCookie(request));
 }
 
 const defaultData = {
@@ -111,37 +100,85 @@ const defaultData = {
   }
 };
 
+
+/* 取得目前資料 */
+
+async function getSiteData() {
+
+  const data = await store.get(
+    "site-data",
+    {
+      type: "json"
+    }
+  );
+
+  return data || defaultData;
+}
+
+
 export default async function handler(request) {
 
   try {
 
-    if (request.method === "GET") {
+    /*
+     * 公開資料 API
+     *
+     * 前台網站可以讀取資料
+     * 不需要管理員登入
+     */
 
-      if (!authorized(request)) {
-        return json(
-          { message: "未登入" },
-          401
-        );
-      }
+    if (
+      request.method === "GET" &&
+      new URL(request.url).pathname === "/api/site-data"
+    ) {
 
-      const data = await store.get(
-        "site-data",
-        {
-          type: "json"
-        }
-      );
+      const data = await getSiteData();
 
       return json({
-        data: data || defaultData
+        data
       });
+
     }
 
 
+    /*
+     * 管理後台 API
+     */
+
+    if (request.method === "GET") {
+
+      if (!authorized(request)) {
+
+        return json(
+          {
+            message: "未登入"
+          },
+          401
+        );
+
+      }
+
+      const data = await getSiteData();
+
+      return json({
+        data
+      });
+
+    }
+
+
+    /*
+     * POST
+     */
+
     if (request.method === "POST") {
 
-      const body =
-        await request.json();
+      const body = await request.json();
 
+
+      /*
+       * 管理員登入
+       */
 
       if (body.action === "login") {
 
@@ -151,22 +188,16 @@ export default async function handler(request) {
         const correctPassword =
           process.env.ADMIN_PASSWORD;
 
-
-        if (
-          !correctUsername ||
-          !correctPassword
-        ) {
+        if (!correctUsername || !correctPassword) {
 
           return json(
             {
-              message:
-                "管理員帳號尚未設定。"
+              message: "管理員帳號尚未設定。"
             },
             500
           );
 
         }
-
 
         if (
           body.username !== correctUsername ||
@@ -175,25 +206,19 @@ export default async function handler(request) {
 
           return json(
             {
-              message:
-                "帳號或密碼錯誤。"
+              message: "帳號或密碼錯誤。"
             },
             401
           );
 
         }
 
-
         const token =
-          makeToken(
-            body.username
-          );
-
+          makeToken(body.username);
 
         return json(
           {
-            message:
-              "登入成功"
+            message: "登入成功"
           },
           200,
           {
@@ -201,15 +226,19 @@ export default async function handler(request) {
               `${COOKIE_NAME}=${token}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`
           }
         );
+
       }
 
+
+      /*
+       * 登出
+       */
 
       if (body.action === "logout") {
 
         return json(
           {
-            message:
-              "已登出"
+            message: "已登出"
           },
           200,
           {
@@ -217,8 +246,13 @@ export default async function handler(request) {
               `${COOKIE_NAME}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`
           }
         );
+
       }
 
+
+      /*
+       * 儲存資料
+       */
 
       if (body.action === "save") {
 
@@ -226,33 +260,41 @@ export default async function handler(request) {
 
           return json(
             {
-              message:
-                "未登入"
+              message: "未登入"
             },
             401
           );
 
         }
 
+        if (!body.data || typeof body.data !== "object") {
+
+          return json(
+            {
+              message: "資料格式錯誤。"
+            },
+            400
+          );
+
+        }
 
         await store.setJSON(
           "site-data",
           body.data
         );
 
-
         return json({
-          message:
-            "資料已儲存"
+          message: "資料已儲存"
         });
+
       }
+
     }
 
 
     return json(
       {
-        message:
-          "找不到這個請求"
+        message: "找不到這個請求"
       },
       404
     );
@@ -264,14 +306,19 @@ export default async function handler(request) {
 
     return json(
       {
-        message:
-          "伺服器發生錯誤"
+        message: "伺服器發生錯誤"
       },
       500
     );
+
   }
+
 }
 
+
 export const config = {
-  path: "/api/admin"
+  path: [
+    "/api/admin",
+    "/api/site-data"
+  ]
 };
