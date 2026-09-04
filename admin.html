@@ -10,12 +10,12 @@
   --blue:#01A3DB;
   --blue-dark:#08799f;
   --blue-light:#eaf9ff;
-  --text:#18323c;
-  --gray:#6f858d;
-  --line:#dcecf2;
   --bg:#f5fbfd;
-  --white:#ffffff;
-  --danger:#e95d68;
+  --white:#fff;
+  --text:#17343e;
+  --gray:#71868e;
+  --line:#dcecf2;
+  --danger:#e85d68;
 }
 
 *{
@@ -24,16 +24,13 @@
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",
-    "PingFang TC","Microsoft JhengHei",sans-serif;
   background:var(--bg);
   color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",
+  "PingFang TC","Microsoft JhengHei",sans-serif;
 }
 
-button,
-input,
-textarea,
-select{
+button,input,textarea,select{
   font:inherit;
 }
 
@@ -41,67 +38,75 @@ button{
   cursor:pointer;
 }
 
-/* ===== 登入 ===== */
+/* LOGIN */
 
 .login-page{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:24px;
-  background:
-    radial-gradient(circle at top right,#dff7ff 0,#f5fbfd 45%),
-    var(--bg);
+  padding:22px;
+  background:linear-gradient(135deg,#eafaff,#f7fcfe);
 }
 
 .login-box{
   width:100%;
   max-width:420px;
+  padding:30px 24px;
   background:white;
-  border-radius:28px;
-  padding:34px 26px;
-  box-shadow:0 12px 40px rgba(1,163,219,.12);
+  border-radius:26px;
+  box-shadow:0 15px 45px rgba(1,163,219,.12);
 }
 
 .logo{
-  width:64px;
-  height:64px;
-  border-radius:20px;
-  background:var(--blue);
-  color:white;
+  width:62px;
+  height:62px;
   display:flex;
   align-items:center;
   justify-content:center;
+  border-radius:19px;
+  background:var(--blue);
+  color:white;
   font-size:28px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .login-box h1{
-  margin:0 0 8px;
-  font-size:25px;
+  margin:0 0 7px;
+  font-size:24px;
 }
 
 .login-box p{
-  margin:0 0 25px;
   color:var(--gray);
   font-size:14px;
+  margin:0 0 25px;
 }
 
 label{
   display:block;
   font-size:14px;
   font-weight:700;
-  margin:0 0 8px;
+  margin-bottom:7px;
 }
 
-.input{
+.input,
+textarea,
+select{
   width:100%;
   border:1px solid var(--line);
   border-radius:13px;
-  padding:13px 14px;
-  outline:none;
   background:#fbfeff;
-  margin-bottom:17px;
+  padding:12px 13px;
+  outline:none;
+}
+
+.input{
+  margin-bottom:16px;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
 }
 
 .input:focus,
@@ -115,24 +120,20 @@ select:focus{
   width:100%;
   border:0;
   border-radius:13px;
+  padding:13px;
   background:var(--blue);
   color:white;
-  padding:14px;
-  font-weight:700;
-}
-
-.primary-btn:active{
-  transform:scale(.99);
+  font-weight:800;
 }
 
 .message{
-  margin-top:14px;
-  font-size:14px;
-  color:var(--danger);
+  margin-top:13px;
   text-align:center;
+  color:var(--danger);
+  font-size:14px;
 }
 
-/* ===== 後台 ===== */
+/* ADMIN */
 
 .admin-page{
   display:none;
@@ -140,24 +141,25 @@ select:focus{
 }
 
 .topbar{
-  background:white;
-  border-bottom:1px solid var(--line);
-  padding:17px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
   position:sticky;
   top:0;
   z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 18px;
+  background:white;
+  border-bottom:1px solid var(--line);
 }
 
 .topbar-title{
+  font-size:16px;
   font-weight:800;
 }
 
 .topbar-sub{
-  font-size:12px;
   color:var(--gray);
+  font-size:12px;
   margin-top:3px;
 }
 
@@ -165,31 +167,31 @@ select:focus{
   border:1px solid var(--line);
   background:white;
   color:var(--gray);
-  padding:8px 12px;
   border-radius:10px;
+  padding:8px 12px;
 }
 
 .container{
   width:min(1100px,100%);
   margin:auto;
-  padding:22px 16px 50px;
+  padding:18px 14px 50px;
 }
 
 .tabs{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  padding-bottom:10px;
-  margin-bottom:20px;
+  padding-bottom:12px;
+  margin-bottom:18px;
 }
 
 .tab{
-  white-space:nowrap;
+  flex:none;
   border:1px solid var(--line);
   background:white;
   color:var(--gray);
   border-radius:12px;
-  padding:10px 15px;
+  padding:10px 14px;
 }
 
 .tab.active{
@@ -231,15 +233,16 @@ select:focus{
   color:white;
   border-radius:12px;
   padding:11px 15px;
-  font-weight:700;
+  font-weight:800;
 }
 
-.card{
+.card,
+.item{
   background:white;
   border:1px solid var(--line);
   border-radius:18px;
-  padding:18px;
-  margin-bottom:14px;
+  padding:17px;
+  margin-bottom:13px;
 }
 
 .form-card{
@@ -253,36 +256,16 @@ select:focus{
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:15px;
+  gap:14px;
 }
 
 .full{
   grid-column:1/-1;
 }
 
-textarea{
-  width:100%;
-  min-height:130px;
-  resize:vertical;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:13px;
-  outline:none;
-  background:#fbfeff;
-}
-
-select{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:13px;
-  outline:none;
-  background:#fbfeff;
-}
-
 .form-actions{
   display:flex;
-  gap:10px;
+  gap:9px;
   margin-top:16px;
 }
 
@@ -290,86 +273,64 @@ select{
   border:0;
   background:var(--blue);
   color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  font-weight:700;
+  border-radius:11px;
+  padding:11px 18px;
+  font-weight:800;
 }
 
 .cancel-btn{
   border:1px solid var(--line);
   background:white;
-  padding:12px 18px;
-  border-radius:12px;
+  border-radius:11px;
+  padding:11px 18px;
 }
 
-.memory-item{
-  border:1px solid var(--line);
-  background:white;
-  border-radius:18px;
-  padding:17px;
-  margin-bottom:12px;
-}
-
-.memory-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.memory-date{
-  color:var(--blue);
-  font-size:13px;
-  font-weight:800;
-}
-
-.memory-title{
+.item-title{
   font-size:17px;
   font-weight:800;
-  margin:7px 0;
 }
 
-.memory-category{
+.item-sub{
+  color:var(--blue);
+  font-size:13px;
+  margin-top:4px;
+}
+
+.item-content{
+  margin-top:10px;
+  color:#47616a;
+  line-height:1.7;
+  white-space:pre-wrap;
+  font-size:14px;
+}
+
+.badge{
   display:inline-block;
+  margin-top:8px;
   background:var(--blue-light);
   color:var(--blue-dark);
-  padding:4px 8px;
   border-radius:7px;
+  padding:4px 8px;
   font-size:12px;
-  margin-bottom:9px;
 }
 
-.memory-content{
-  white-space:pre-wrap;
-  line-height:1.7;
-  font-size:14px;
-  color:#405a63;
-}
-
-.memory-link{
-  display:block;
-  margin-top:10px;
-  color:var(--blue);
-  word-break:break-all;
-  font-size:13px;
-}
-
-.item-actions{
+.actions{
   display:flex;
   gap:7px;
-  margin-top:14px;
+  margin-top:13px;
 }
 
 .small-btn{
   border:1px solid var(--line);
   background:white;
-  padding:7px 11px;
   border-radius:9px;
+  padding:7px 11px;
   font-size:13px;
 }
 
 .delete-btn{
   color:var(--danger);
-  border-color:#f5d7da;
+  border-color:#f4d5d8;
 }
 
 .empty{
@@ -381,36 +342,62 @@ select{
   color:var(--gray);
 }
 
-.placeholder{
-  text-align:center;
-  padding:60px 20px;
-  background:white;
-  border-radius:18px;
-  border:1px solid var(--line);
-}
-
-.placeholder-icon{
-  font-size:38px;
-  margin-bottom:12px;
-}
-
 .status{
-  margin-bottom:15px;
-  padding:11px 14px;
-  border-radius:11px;
+  display:none;
+  margin-bottom:14px;
   background:var(--blue-light);
   color:var(--blue-dark);
+  padding:10px 13px;
+  border-radius:10px;
   font-size:13px;
-  display:none;
+}
+
+/* LANGUAGE */
+
+.language-box{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+}
+
+.language-buttons{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:15px;
+}
+
+.language-button{
+  flex:none;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:10px;
+  padding:9px 13px;
+}
+
+.language-button.active{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
 }
 
 @media(max-width:650px){
+
   .topbar{
-    padding:14px;
+    padding:13px;
   }
 
   .container{
-    padding:16px 12px 40px;
+    padding:15px 11px 40px;
+  }
+
+  .section-head{
+    flex-direction:column;
+  }
+
+  .add-btn{
+    width:100%;
   }
 
   .form-grid{
@@ -421,25 +408,17 @@ select{
     grid-column:auto;
   }
 
-  .section-head{
-    align-items:stretch;
-    flex-direction:column;
+  .form-actions button{
+    flex:1;
   }
 
-  .add-btn{
-    width:100%;
-  }
-
-  .memory-top{
-    flex-direction:column;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ==================== 登入 ==================== -->
+<!-- LOGIN -->
 
 <div class="login-page" id="loginPage">
 
@@ -452,6 +431,7 @@ select{
     <p>記憶資料庫｜管理後台</p>
 
     <label>管理員帳號</label>
+
     <input
       class="input"
       id="username"
@@ -461,6 +441,7 @@ select{
     >
 
     <label>管理員密碼</label>
+
     <input
       class="input"
       id="password"
@@ -480,7 +461,7 @@ select{
 </div>
 
 
-<!-- ==================== 後台 ==================== -->
+<!-- ADMIN -->
 
 <div class="admin-page" id="adminPage">
 
@@ -507,34 +488,40 @@ select{
 
     <div class="tabs">
 
-      <button class="tab active" onclick="switchTab('memory',this)">
+      <button class="tab active"
+        onclick="switchTab('memory',this)">
         📅 記憶資料
       </button>
 
-      <button class="tab" onclick="switchTab('members',this)">
+      <button class="tab"
+        onclick="switchTab('members',this)">
         👤 成員
       </button>
 
-      <button class="tab" onclick="switchTab('albums',this)">
+      <button class="tab"
+        onclick="switchTab('albums',this)">
         💿 專輯
       </button>
 
-      <button class="tab" onclick="switchTab('stages',this)">
+      <button class="tab"
+        onclick="switchTab('stages',this)">
         🎤 舞台
       </button>
 
-      <button class="tab" onclick="switchTab('social',this)">
+      <button class="tab"
+        onclick="switchTab('social',this)">
         📱 SNS
       </button>
 
-      <button class="tab" onclick="switchTab('languages',this)">
+      <button class="tab"
+        onclick="switchTab('languages',this)">
         🌐 語言
       </button>
 
     </div>
 
 
-    <!-- ==================== 記憶 ==================== -->
+    <!-- MEMORY -->
 
     <section class="panel active" id="memoryPanel">
 
@@ -542,26 +529,21 @@ select{
 
         <div>
           <h2>📅 記憶資料</h2>
-          <p>
-            新增 BOYNEXTDOOR 從 2023/05/30 開始的歷史紀錄
-          </p>
+          <p>管理 BOYNEXTDOOR 歷史事件</p>
         </div>
 
-        <button class="add-btn" onclick="openMemoryForm()">
+        <button class="add-btn"
+          onclick="openMemoryForm()">
           ＋ 新增記憶
         </button>
 
       </div>
 
-
-      <div class="status" id="saveStatus"></div>
-
-
-      <!-- 新增 / 編輯表單 -->
+      <div class="status" id="status"></div>
 
       <div class="card form-card" id="memoryForm">
 
-        <h3 id="formTitle">新增記憶</h3>
+        <h3 id="memoryFormTitle">新增記憶</h3>
 
         <div class="form-grid">
 
@@ -574,25 +556,23 @@ select{
             >
           </div>
 
-
           <div>
             <label>分類</label>
 
             <select id="memoryCategory">
 
-              <option value="活動">活動</option>
-              <option value="音樂">音樂</option>
-              <option value="舞台">舞台</option>
-              <option value="直播">直播</option>
-              <option value="SNS">SNS</option>
-              <option value="Weverse">Weverse</option>
-              <option value="採訪">採訪</option>
-              <option value="其他">其他</option>
+              <option>活動</option>
+              <option>音樂</option>
+              <option>舞台</option>
+              <option>直播</option>
+              <option>SNS</option>
+              <option>Weverse</option>
+              <option>採訪</option>
+              <option>其他</option>
 
             </select>
 
           </div>
-
 
           <div class="full">
 
@@ -601,12 +581,10 @@ select{
             <input
               class="input"
               id="memoryTitle"
-              type="text"
               placeholder="例如：BOYNEXTDOOR 正式出道"
             >
 
           </div>
-
 
           <div class="full">
 
@@ -614,20 +592,18 @@ select{
 
             <textarea
               id="memoryContent"
-              placeholder="輸入這一天發生的事情……"
+              placeholder="輸入事件內容……"
             ></textarea>
 
           </div>
 
-
           <div class="full">
 
-            <label>相關連結（可不填）</label>
+            <label>相關連結</label>
 
             <input
               class="input"
               id="memoryLink"
-              type="url"
               placeholder="https://..."
             >
 
@@ -635,20 +611,15 @@ select{
 
         </div>
 
-
         <div class="form-actions">
 
-          <button
-            class="save-btn"
-            onclick="saveMemory()"
-          >
+          <button class="save-btn"
+            onclick="saveMemory()">
             儲存
           </button>
 
-          <button
-            class="cancel-btn"
-            onclick="closeMemoryForm()"
-          >
+          <button class="cancel-btn"
+            onclick="closeMemoryForm()">
             取消
           </button>
 
@@ -656,101 +627,489 @@ select{
 
       </div>
 
-
-      <!-- 記憶列表 -->
-
       <div id="memoryList"></div>
 
     </section>
 
 
-    <!-- ==================== 其他 ==================== -->
+    <!-- MEMBERS -->
 
     <section class="panel" id="membersPanel">
 
       <div class="section-head">
+
         <div>
           <h2>👤 成員</h2>
-          <p>管理六位成員的資料</p>
+          <p>管理六位成員資料</p>
         </div>
+
+        <button class="add-btn"
+          onclick="openMemberForm()">
+          ＋ 新增成員
+        </button>
+
       </div>
 
-      <div class="placeholder">
-        <div class="placeholder-icon">👤</div>
-        <strong>成員管理即將完成</strong>
-        <p>下一步會做成可以直接新增、修改成員資料的表單。</p>
+      <div class="card form-card" id="memberForm">
+
+        <h3 id="memberFormTitle">新增成員</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>韓文姓名</label>
+
+            <input
+              class="input"
+              id="memberKorean"
+              placeholder="例如：성호"
+            >
+          </div>
+
+          <div>
+            <label>中文姓名</label>
+
+            <input
+              class="input"
+              id="memberChinese"
+              placeholder="例如：成淏"
+            >
+          </div>
+
+          <div>
+            <label>英文姓名</label>
+
+            <input
+              class="input"
+              id="memberEnglish"
+              placeholder="例如：SUNGHO"
+            >
+          </div>
+
+          <div>
+            <label>生日</label>
+
+            <input
+              class="input"
+              id="memberBirth"
+              type="date"
+            >
+          </div>
+
+          <div>
+            <label>身高</label>
+
+            <input
+              class="input"
+              id="memberHeight"
+              placeholder="例如：174 cm"
+            >
+          </div>
+
+          <div>
+            <label>代表 Emoji</label>
+
+            <input
+              class="input"
+              id="memberEmoji"
+              placeholder="例如：🐶"
+            >
+          </div>
+
+          <div class="full">
+
+            <label>TMI</label>
+
+            <textarea
+              id="memberTmi"
+              placeholder="輸入成員 TMI……"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+
+          <button class="save-btn"
+            onclick="saveMember()">
+            儲存
+          </button>
+
+          <button class="cancel-btn"
+            onclick="closeMemberForm()">
+            取消
+          </button>
+
+        </div>
+
       </div>
+
+      <div id="memberList"></div>
 
     </section>
 
+
+    <!-- ALBUMS -->
 
     <section class="panel" id="albumsPanel">
 
       <div class="section-head">
+
         <div>
           <h2>💿 專輯</h2>
-          <p>管理歷代專輯與歌曲</p>
+          <p>管理歷代專輯資料</p>
         </div>
+
+        <button class="add-btn"
+          onclick="openAlbumForm()">
+          ＋ 新增專輯
+        </button>
+
       </div>
 
-      <div class="placeholder">
-        <div class="placeholder-icon">💿</div>
-        <strong>專輯管理即將完成</strong>
-        <p>下一步會加入專輯、日期、封面與歌曲。</p>
+      <div class="card form-card" id="albumForm">
+
+        <h3 id="albumFormTitle">新增專輯</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>專輯名稱</label>
+
+            <input
+              class="input"
+              id="albumName"
+              placeholder="例如：WHO!"
+            >
+          </div>
+
+          <div>
+            <label>發行日期</label>
+
+            <input
+              class="input"
+              id="albumDate"
+              type="date"
+            >
+          </div>
+
+          <div>
+            <label>專輯類型</label>
+
+            <input
+              class="input"
+              id="albumType"
+              placeholder="例如：Single Album"
+            >
+          </div>
+
+          <div>
+            <label>封面圖片網址</label>
+
+            <input
+              class="input"
+              id="albumCover"
+              placeholder="https://..."
+            >
+          </div>
+
+          <div class="full">
+
+            <label>收錄歌曲</label>
+
+            <textarea
+              id="albumSongs"
+              placeholder="一行一首歌曲"
+            ></textarea>
+
+          </div>
+
+          <div class="full">
+
+            <label>專輯介紹</label>
+
+            <textarea
+              id="albumDescription"
+              placeholder="輸入專輯介紹……"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+
+          <button class="save-btn"
+            onclick="saveAlbum()">
+            儲存
+          </button>
+
+          <button class="cancel-btn"
+            onclick="closeAlbumForm()">
+            取消
+          </button>
+
+        </div>
+
       </div>
+
+      <div id="albumList"></div>
 
     </section>
 
+
+    <!-- STAGES -->
 
     <section class="panel" id="stagesPanel">
 
       <div class="section-head">
+
         <div>
           <h2>🎤 舞台</h2>
           <p>管理歷史舞台與表演</p>
         </div>
+
+        <button class="add-btn"
+          onclick="openStageForm()">
+          ＋ 新增舞台
+        </button>
+
       </div>
 
-      <div class="placeholder">
-        <div class="placeholder-icon">🎤</div>
-        <strong>舞台管理即將完成</strong>
-        <p>下一步會加入節目、歌曲、日期與影片連結。</p>
+      <div class="card form-card" id="stageForm">
+
+        <h3 id="stageFormTitle">新增舞台</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>日期</label>
+
+            <input
+              class="input"
+              id="stageDate"
+              type="date"
+            >
+          </div>
+
+          <div>
+            <label>節目／活動</label>
+
+            <input
+              class="input"
+              id="stageProgram"
+              placeholder="例如：M COUNTDOWN"
+            >
+          </div>
+
+          <div>
+            <label>表演歌曲</label>
+
+            <input
+              class="input"
+              id="stageSong"
+              placeholder="例如：Earth, Wind & Fire"
+            >
+          </div>
+
+          <div>
+            <label>影片連結</label>
+
+            <input
+              class="input"
+              id="stageLink"
+              placeholder="https://..."
+            >
+          </div>
+
+          <div class="full">
+
+            <label>舞台備註</label>
+
+            <textarea
+              id="stageDescription"
+              placeholder="輸入舞台相關內容……"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+
+          <button class="save-btn"
+            onclick="saveStage()">
+            儲存
+          </button>
+
+          <button class="cancel-btn"
+            onclick="closeStageForm()">
+            取消
+          </button>
+
+        </div>
+
       </div>
+
+      <div id="stageList"></div>
 
     </section>
 
+
+    <!-- SOCIAL -->
 
     <section class="panel" id="socialPanel">
 
       <div class="section-head">
+
         <div>
           <h2>📱 SNS</h2>
           <p>管理官方社群連結</p>
         </div>
+
+        <button class="add-btn"
+          onclick="openSocialForm()">
+          ＋ 新增 SNS
+        </button>
+
       </div>
 
-      <div class="placeholder">
-        <div class="placeholder-icon">📱</div>
-        <strong>SNS 管理即將完成</strong>
-        <p>YouTube、Weverse、X、Instagram、TikTok、抖音。</p>
+      <div class="card form-card" id="socialForm">
+
+        <h3 id="socialFormTitle">新增 SNS</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>平台</label>
+
+            <select id="socialPlatform">
+
+              <option>YouTube</option>
+              <option>Weverse</option>
+              <option>X</option>
+              <option>Instagram</option>
+              <option>TikTok</option>
+              <option>抖音</option>
+
+            </select>
+
+          </div>
+
+          <div>
+            <label>名稱</label>
+
+            <input
+              class="input"
+              id="socialName"
+              placeholder="例如：BOYNEXTDOOR Official"
+            >
+          </div>
+
+          <div class="full">
+
+            <label>網址</label>
+
+            <input
+              class="input"
+              id="socialUrl"
+              placeholder="https://..."
+            >
+
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+
+          <button class="save-btn"
+            onclick="saveSocial()">
+            儲存
+          </button>
+
+          <button class="cancel-btn"
+            onclick="closeSocialForm()">
+            取消
+          </button>
+
+        </div>
+
       </div>
+
+      <div id="socialList"></div>
 
     </section>
 
 
+    <!-- LANGUAGES -->
+
     <section class="panel" id="languagesPanel">
 
       <div class="section-head">
+
         <div>
           <h2>🌐 語言</h2>
-          <p>管理網站多語言內容</p>
+          <p>管理網站五種語言的文字</p>
         </div>
+
       </div>
 
-      <div class="placeholder">
-        <div class="placeholder-icon">🌐</div>
-        <strong>多語言管理即將完成</strong>
-        <p>繁中、簡中、English、日本語、한국어。</p>
+      <div class="language-box">
+
+        <div class="language-buttons">
+
+          <button class="language-button active"
+            onclick="selectLanguage('zh-Hant',this)">
+            繁中
+          </button>
+
+          <button class="language-button"
+            onclick="selectLanguage('zh-Hans',this)">
+            简中
+          </button>
+
+          <button class="language-button"
+            onclick="selectLanguage('en',this)">
+            English
+          </button>
+
+          <button class="language-button"
+            onclick="selectLanguage('ja',this)">
+            日本語
+          </button>
+
+          <button class="language-button"
+            onclick="selectLanguage('ko',this)">
+            한국어
+          </button>
+
+        </div>
+
+        <label>網站名稱</label>
+
+        <input
+          class="input"
+          id="languageSiteName"
+          placeholder="BOYNEXTDOOR 記憶資料庫"
+        >
+
+        <label>網站介紹</label>
+
+        <textarea
+          id="languageDescription"
+          placeholder="輸入網站介紹……"
+        ></textarea>
+
+        <div class="form-actions">
+
+          <button class="save-btn"
+            onclick="saveLanguage()">
+            儲存語言內容
+          </button>
+
+        </div>
+
       </div>
 
     </section>
@@ -762,87 +1121,98 @@ select{
 
 <script>
 
-let siteData = {
-  memory: [],
-  members: [],
-  albums: [],
-  stages: [],
-  social: [],
-  languages: {
-    "zh-Hant": {},
-    "zh-Hans": {},
-    "en": {},
-    "ja": {},
-    "ko": {}
+let siteData={
+  memory:[],
+  members:[],
+  albums:[],
+  stages:[],
+  social:[],
+  languages:{
+    "zh-Hant":{},
+    "zh-Hans":{},
+    "en":{},
+    "ja":{},
+    "ko":{}
   }
 };
 
-let editingMemoryIndex = -1;
+let editingMemoryIndex=-1;
+let editingMemberIndex=-1;
+let editingAlbumIndex=-1;
+let editingStageIndex=-1;
+let editingSocialIndex=-1;
+
+let currentLanguage="zh-Hant";
 
 
-/* =========================
-   登入
-========================= */
+/* LOGIN */
 
 async function login(){
 
-  const username =
+  const username=
     document.getElementById("username").value.trim();
 
-  const password =
+  const password=
     document.getElementById("password").value;
 
-  const message =
+  const message=
     document.getElementById("loginMessage");
 
-  message.textContent = "";
+  message.textContent="";
 
-  if(!username || !password){
+  if(!username||!password){
 
-    message.textContent = "請輸入帳號和密碼。";
+    message.textContent="請輸入帳號和密碼。";
     return;
+
   }
 
   try{
 
-    const response = await fetch("/api/admin",{
+    const response=
+      await fetch("/api/admin",{
 
-      method:"POST",
+        method:"POST",
 
-      headers:{
-        "Content-Type":"application/json"
-      },
+        headers:{
+          "Content-Type":"application/json"
+        },
 
-      credentials:"include",
+        credentials:"include",
 
-      body:JSON.stringify({
-        action:"login",
-        username,
-        password
-      })
+        body:JSON.stringify({
+          action:"login",
+          username,
+          password
+        })
 
-    });
+      });
 
-    const result = await response.json();
+    const result=
+      await response.json();
 
     if(!response.ok){
 
-      message.textContent =
-        result.message || "登入失敗。";
+      message.textContent=
+        result.message||"登入失敗。";
 
       return;
+
     }
 
     await loadData();
 
-    document.getElementById("loginPage").style.display="none";
-    document.getElementById("adminPage").style.display="block";
+    document.getElementById("loginPage")
+      .style.display="none";
+
+    document.getElementById("adminPage")
+      .style.display="block";
 
   }catch(error){
 
     console.error(error);
 
-    message.textContent =
+    message.textContent=
       "無法連接伺服器，請稍後再試。";
 
   }
@@ -850,59 +1220,67 @@ async function login(){
 }
 
 
-/* =========================
-   載入資料
-========================= */
+/* LOAD */
 
 async function loadData(){
 
-  try{
+  const response=
+    await fetch("/api/admin?action=data",{
+      credentials:"include"
+    });
 
-    const response =
-      await fetch("/api/admin?action=data",{
-        credentials:"include"
-      });
+  const result=
+    await response.json();
 
-    const result = await response.json();
+  if(!response.ok){
 
-    if(!response.ok){
-
-      throw new Error(
-        result.message || "資料載入失敗"
-      );
-
-    }
-
-    siteData =
-      result.data || siteData;
-
-    if(!Array.isArray(siteData.memory)){
-      siteData.memory=[];
-    }
-
-    renderMemory();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "資料載入失敗：\n" +
-      error.message
+    throw new Error(
+      result.message||"資料載入失敗"
     );
 
   }
 
+  siteData=result.data||siteData;
+
+  siteData.memory=
+    Array.isArray(siteData.memory)
+      ?siteData.memory
+      :[];
+
+  siteData.members=
+    Array.isArray(siteData.members)
+      ?siteData.members
+      :[];
+
+  siteData.albums=
+    Array.isArray(siteData.albums)
+      ?siteData.albums
+      :[];
+
+  siteData.stages=
+    Array.isArray(siteData.stages)
+      ?siteData.stages
+      :[];
+
+  siteData.social=
+    Array.isArray(siteData.social)
+      ?siteData.social
+      :[];
+
+  if(!siteData.languages){
+    siteData.languages={};
+  }
+
+  renderAll();
+
 }
 
 
-/* =========================
-   儲存全部資料
-========================= */
+/* SAVE */
 
 async function saveSiteData(){
 
-  const response =
+  const response=
     await fetch("/api/admin",{
 
       method:"POST",
@@ -920,182 +1298,13 @@ async function saveSiteData(){
 
     });
 
-  const result =
+  const result=
     await response.json();
 
   if(!response.ok){
 
     throw new Error(
-      result.message || "儲存失敗"
-    );
-
-  }
-
-  return result;
-
-}
-
-
-/* =========================
-   記憶表單
-========================= */
-
-function openMemoryForm(index = -1){
-
-  editingMemoryIndex=index;
-
-  const form =
-    document.getElementById("memoryForm");
-
-  form.classList.add("show");
-
-  if(index === -1){
-
-    document.getElementById("formTitle")
-      .textContent="新增記憶";
-
-    document.getElementById("memoryDate")
-      .value="";
-
-    document.getElementById("memoryCategory")
-      .value="活動";
-
-    document.getElementById("memoryTitle")
-      .value="";
-
-    document.getElementById("memoryContent")
-      .value="";
-
-    document.getElementById("memoryLink")
-      .value="";
-
-  }else{
-
-    const item=siteData.memory[index];
-
-    document.getElementById("formTitle")
-      .textContent="編輯記憶";
-
-    document.getElementById("memoryDate")
-      .value=item.date || "";
-
-    document.getElementById("memoryCategory")
-      .value=item.category || "其他";
-
-    document.getElementById("memoryTitle")
-      .value=item.title || "";
-
-    document.getElementById("memoryContent")
-      .value=item.content || "";
-
-    document.getElementById("memoryLink")
-      .value=item.link || "";
-
-  }
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-function closeMemoryForm(){
-
-  editingMemoryIndex=-1;
-
-  document
-    .getElementById("memoryForm")
-    .classList.remove("show");
-
-}
-
-
-/* =========================
-   儲存一筆記憶
-========================= */
-
-async function saveMemory(){
-
-  const date =
-    document.getElementById("memoryDate").value;
-
-  const category =
-    document.getElementById("memoryCategory").value;
-
-  const title =
-    document.getElementById("memoryTitle").value.trim();
-
-  const content =
-    document.getElementById("memoryContent").value.trim();
-
-  const link =
-    document.getElementById("memoryLink").value.trim();
-
-  if(!date){
-
-    alert("請選擇日期。");
-    return;
-
-  }
-
-  if(!title){
-
-    alert("請輸入標題。");
-    return;
-
-  }
-
-  if(!content){
-
-    alert("請輸入內容。");
-    return;
-
-  }
-
-
-  const memory={
-
-    date,
-    category,
-    title,
-    content,
-    link
-
-  };
-
-
-  if(editingMemoryIndex === -1){
-
-    siteData.memory.push(memory);
-
-  }else{
-
-    siteData.memory[editingMemoryIndex]=memory;
-
-  }
-
-
-  try{
-
-    await saveSiteData();
-
-    showStatus(
-      editingMemoryIndex === -1
-        ? "新增成功！"
-        : "修改成功！"
-    );
-
-    closeMemoryForm();
-
-    renderMemory();
-
-  }catch(error){
-
-    alert(
-      "儲存失敗：\n" +
-      error.message
+      result.message||"儲存失敗"
     );
 
   }
@@ -1103,176 +1312,21 @@ async function saveMemory(){
 }
 
 
-/* =========================
-   刪除記憶
-========================= */
+/* RENDER ALL */
 
-async function deleteMemory(index){
+function renderAll(){
 
-  const item=siteData.memory[index];
-
-  const ok=
-    confirm(
-      `確定要刪除「${item.title}」嗎？\n\n刪除後無法復原。`
-    );
-
-  if(!ok) return;
-
-
-  siteData.memory.splice(index,1);
-
-
-  try{
-
-    await saveSiteData();
-
-    showStatus("刪除成功！");
-
-    renderMemory();
-
-  }catch(error){
-
-    alert(
-      "刪除失敗：\n" +
-      error.message
-    );
-
-  }
+  renderMemory();
+  renderMembers();
+  renderAlbums();
+  renderStages();
+  renderSocial();
+  loadLanguage();
 
 }
 
 
-/* =========================
-   顯示記憶
-========================= */
-
-function renderMemory(){
-
-  const list=
-    document.getElementById("memoryList");
-
-  if(!siteData.memory.length){
-
-    list.innerHTML=`
-      <div class="empty">
-        <div style="font-size:34px;margin-bottom:10px;">
-          📖
-        </div>
-        <strong>目前還沒有記憶資料</strong>
-        <div style="margin-top:7px;">
-          點右上角「＋ 新增記憶」開始建立第一筆資料。
-        </div>
-      </div>
-    `;
-
-    return;
-
-  }
-
-
-  const sorted=
-    siteData.memory
-      .map((item,index)=>({
-        ...item,
-        originalIndex:index
-      }))
-      .sort((a,b)=>
-        String(b.date).localeCompare(String(a.date))
-      );
-
-
-  list.innerHTML=
-    sorted.map(item=>`
-
-      <div class="memory-item">
-
-        <div class="memory-top">
-
-          <div>
-
-            <div class="memory-date">
-              ${escapeHtml(formatDate(item.date))}
-            </div>
-
-            <div class="memory-title">
-              ${escapeHtml(item.title)}
-            </div>
-
-            <span class="memory-category">
-              ${escapeHtml(item.category || "其他")}
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="memory-content">
-          ${escapeHtml(item.content)}
-        </div>
-
-
-        ${
-          item.link
-          ?
-          `<a
-            class="memory-link"
-            href="${escapeAttribute(item.link)}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            🔗 ${escapeHtml(item.link)}
-          </a>`
-          :
-          ""
-        }
-
-
-        <div class="item-actions">
-
-          <button
-            class="small-btn"
-            onclick="openMemoryForm(${item.originalIndex})"
-          >
-            ✏️ 編輯
-          </button>
-
-          <button
-            class="small-btn delete-btn"
-            onclick="deleteMemory(${item.originalIndex})"
-          >
-            🗑️ 刪除
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* =========================
-   日期格式
-========================= */
-
-function formatDate(date){
-
-  if(!date) return "";
-
-  const parts=date.split("-");
-
-  if(parts.length !== 3) return date;
-
-  return `${parts[0]}/${parts[1]}/${parts[2]}`;
-
-}
-
-
-/* =========================
-   Tab
-========================= */
+/* TABS */
 
 function switchTab(name,button){
 
@@ -1288,7 +1342,6 @@ function switchTab(name,button){
       tab.classList.remove("active");
     });
 
-
   document
     .getElementById(name+"Panel")
     .classList.add("active");
@@ -1298,9 +1351,1175 @@ function switchTab(name,button){
 }
 
 
-/* =========================
-   登出
-========================= */
+/* MEMORY */
+
+function openMemoryForm(index=-1){
+
+  editingMemoryIndex=index;
+
+  document
+    .getElementById("memoryForm")
+    .classList.add("show");
+
+  if(index===-1){
+
+    document.getElementById("memoryFormTitle")
+      .textContent="新增記憶";
+
+    document.getElementById("memoryDate").value="";
+    document.getElementById("memoryCategory").value="活動";
+    document.getElementById("memoryTitle").value="";
+    document.getElementById("memoryContent").value="";
+    document.getElementById("memoryLink").value="";
+
+  }else{
+
+    const item=siteData.memory[index];
+
+    document.getElementById("memoryFormTitle")
+      .textContent="編輯記憶";
+
+    document.getElementById("memoryDate").value=item.date||"";
+    document.getElementById("memoryCategory").value=item.category||"活動";
+    document.getElementById("memoryTitle").value=item.title||"";
+    document.getElementById("memoryContent").value=item.content||"";
+    document.getElementById("memoryLink").value=item.link||"";
+
+  }
+
+}
+
+
+function closeMemoryForm(){
+
+  editingMemoryIndex=-1;
+
+  document
+    .getElementById("memoryForm")
+    .classList.remove("show");
+
+}
+
+
+async function saveMemory(){
+
+  const item={
+
+    date:document.getElementById("memoryDate").value,
+
+    category:document
+      .getElementById("memoryCategory").value,
+
+    title:document
+      .getElementById("memoryTitle").value.trim(),
+
+    content:document
+      .getElementById("memoryContent").value.trim(),
+
+    link:document
+      .getElementById("memoryLink").value.trim()
+
+  };
+
+  if(!item.date){
+
+    alert("請選擇日期。");
+    return;
+
+  }
+
+  if(!item.title){
+
+    alert("請輸入標題。");
+    return;
+
+  }
+
+  if(!item.content){
+
+    alert("請輸入內容。");
+    return;
+
+  }
+
+  if(editingMemoryIndex===-1){
+
+    siteData.memory.push(item);
+
+  }else{
+
+    siteData.memory[editingMemoryIndex]=item;
+
+  }
+
+  try{
+
+    await saveSiteData();
+
+    closeMemoryForm();
+
+    renderMemory();
+
+    showStatus("記憶資料已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+async function deleteMemory(index){
+
+  if(!confirm(
+    "確定要刪除這筆記憶嗎？"
+  )) return;
+
+  siteData.memory.splice(index,1);
+
+  try{
+
+    await saveSiteData();
+
+    renderMemory();
+
+    showStatus("記憶已刪除！");
+
+  }catch(error){
+
+    alert("刪除失敗："+error.message);
+
+  }
+
+}
+
+
+function renderMemory(){
+
+  const list=
+    document.getElementById("memoryList");
+
+  if(!siteData.memory.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px">📖</div>
+        <strong>目前還沒有記憶資料</strong>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  const sorted=
+    siteData.memory
+      .map((item,index)=>({
+        ...item,
+        index
+      }))
+      .sort((a,b)=>
+        String(b.date).localeCompare(String(a.date))
+      );
+
+  list.innerHTML=
+    sorted.map(item=>`
+
+      <div class="item">
+
+        <div class="item-sub">
+          ${escapeHtml(formatDate(item.date))}
+        </div>
+
+        <div class="item-title">
+          ${escapeHtml(item.title)}
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(item.category||"其他")}
+        </span>
+
+        <div class="item-content">
+          ${escapeHtml(item.content)}
+        </div>
+
+        ${
+          item.link
+          ?`
+            <div class="item-sub">
+              🔗 ${escapeHtml(item.link)}
+            </div>
+          `
+          :""
+        }
+
+        <div class="actions">
+
+          <button
+            class="small-btn"
+            onclick="openMemoryForm(${item.index})">
+            ✏️ 編輯
+          </button>
+
+          <button
+            class="small-btn delete-btn"
+            onclick="deleteMemory(${item.index})">
+            🗑️ 刪除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* MEMBERS */
+
+function openMemberForm(index=-1){
+
+  editingMemberIndex=index;
+
+  document
+    .getElementById("memberForm")
+    .classList.add("show");
+
+  if(index===-1){
+
+    document.getElementById("memberFormTitle")
+      .textContent="新增成員";
+
+    [
+      "memberKorean",
+      "memberChinese",
+      "memberEnglish",
+      "memberBirth",
+      "memberHeight",
+      "memberEmoji",
+      "memberTmi"
+    ].forEach(id=>{
+      document.getElementById(id).value="";
+    });
+
+  }else{
+
+    const item=siteData.members[index];
+
+    document.getElementById("memberFormTitle")
+      .textContent="編輯成員";
+
+    document.getElementById("memberKorean").value=item.korean||"";
+    document.getElementById("memberChinese").value=item.chinese||"";
+    document.getElementById("memberEnglish").value=item.english||"";
+    document.getElementById("memberBirth").value=item.birth||"";
+    document.getElementById("memberHeight").value=item.height||"";
+    document.getElementById("memberEmoji").value=item.emoji||"";
+    document.getElementById("memberTmi").value=item.tmi||"";
+
+  }
+
+}
+
+
+function closeMemberForm(){
+
+  editingMemberIndex=-1;
+
+  document
+    .getElementById("memberForm")
+    .classList.remove("show");
+
+}
+
+
+async function saveMember(){
+
+  const item={
+
+    korean:document
+      .getElementById("memberKorean").value.trim(),
+
+    chinese:document
+      .getElementById("memberChinese").value.trim(),
+
+    english:document
+      .getElementById("memberEnglish").value.trim(),
+
+    birth:document
+      .getElementById("memberBirth").value,
+
+    height:document
+      .getElementById("memberHeight").value.trim(),
+
+    emoji:document
+      .getElementById("memberEmoji").value.trim(),
+
+    tmi:document
+      .getElementById("memberTmi").value.trim()
+
+  };
+
+  if(!item.korean||!item.english){
+
+    alert("請至少填寫韓文姓名和英文姓名。");
+    return;
+
+  }
+
+  if(editingMemberIndex===-1){
+
+    siteData.members.push(item);
+
+  }else{
+
+    siteData.members[editingMemberIndex]=item;
+
+  }
+
+  try{
+
+    await saveSiteData();
+
+    closeMemberForm();
+
+    renderMembers();
+
+    showStatus("成員資料已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+async function deleteMember(index){
+
+  if(!confirm("確定要刪除這位成員嗎？"))
+    return;
+
+  siteData.members.splice(index,1);
+
+  try{
+
+    await saveSiteData();
+
+    renderMembers();
+
+    showStatus("成員已刪除！");
+
+  }catch(error){
+
+    alert("刪除失敗："+error.message);
+
+  }
+
+}
+
+
+function renderMembers(){
+
+  const list=
+    document.getElementById("memberList");
+
+  if(!siteData.members.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px">👤</div>
+        <strong>目前還沒有成員資料</strong>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML=
+    siteData.members.map((item,index)=>`
+
+      <div class="item">
+
+        <div class="item-sub">
+          ${escapeHtml(item.emoji||"👤")}
+          ${escapeHtml(item.english||"")}
+        </div>
+
+        <div class="item-title">
+          ${escapeHtml(item.chinese||"")}
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(item.korean||"")}
+        </span>
+
+        <div class="item-content">
+
+          ${item.birth
+            ?`🎂 ${escapeHtml(item.birth)}<br>`
+            :""
+          }
+
+          ${item.height
+            ?`📏 ${escapeHtml(item.height)}<br>`
+            :""
+          }
+
+          ${item.tmi
+            ?`<br>💬 ${escapeHtml(item.tmi)}`
+            :""
+          }
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="small-btn"
+            onclick="openMemberForm(${index})">
+            ✏️ 編輯
+          </button>
+
+          <button
+            class="small-btn delete-btn"
+            onclick="deleteMember(${index})">
+            🗑️ 刪除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* ALBUMS */
+
+function openAlbumForm(index=-1){
+
+  editingAlbumIndex=index;
+
+  document
+    .getElementById("albumForm")
+    .classList.add("show");
+
+  if(index===-1){
+
+    document.getElementById("albumFormTitle")
+      .textContent="新增專輯";
+
+    [
+      "albumName",
+      "albumDate",
+      "albumType",
+      "albumCover",
+      "albumSongs",
+      "albumDescription"
+    ].forEach(id=>{
+      document.getElementById(id).value="";
+    });
+
+  }else{
+
+    const item=siteData.albums[index];
+
+    document.getElementById("albumFormTitle")
+      .textContent="編輯專輯";
+
+    document.getElementById("albumName").value=item.name||"";
+    document.getElementById("albumDate").value=item.date||"";
+    document.getElementById("albumType").value=item.type||"";
+    document.getElementById("albumCover").value=item.cover||"";
+    document.getElementById("albumSongs").value=item.songs||"";
+    document.getElementById("albumDescription").value=item.description||"";
+
+  }
+
+}
+
+
+function closeAlbumForm(){
+
+  editingAlbumIndex=-1;
+
+  document
+    .getElementById("albumForm")
+    .classList.remove("show");
+
+}
+
+
+async function saveAlbum(){
+
+  const item={
+
+    name:document
+      .getElementById("albumName").value.trim(),
+
+    date:document
+      .getElementById("albumDate").value,
+
+    type:document
+      .getElementById("albumType").value.trim(),
+
+    cover:document
+      .getElementById("albumCover").value.trim(),
+
+    songs:document
+      .getElementById("albumSongs").value.trim(),
+
+    description:document
+      .getElementById("albumDescription").value.trim()
+
+  };
+
+  if(!item.name){
+
+    alert("請輸入專輯名稱。");
+    return;
+
+  }
+
+  if(editingAlbumIndex===-1){
+
+    siteData.albums.push(item);
+
+  }else{
+
+    siteData.albums[editingAlbumIndex]=item;
+
+  }
+
+  try{
+
+    await saveSiteData();
+
+    closeAlbumForm();
+
+    renderAlbums();
+
+    showStatus("專輯資料已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+async function deleteAlbum(index){
+
+  if(!confirm("確定要刪除這張專輯嗎？"))
+    return;
+
+  siteData.albums.splice(index,1);
+
+  try{
+
+    await saveSiteData();
+
+    renderAlbums();
+
+    showStatus("專輯已刪除！");
+
+  }catch(error){
+
+    alert("刪除失敗："+error.message);
+
+  }
+
+}
+
+
+function renderAlbums(){
+
+  const list=
+    document.getElementById("albumList");
+
+  if(!siteData.albums.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px">💿</div>
+        <strong>目前還沒有專輯資料</strong>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML=
+    siteData.albums.map((item,index)=>`
+
+      <div class="item">
+
+        <div class="item-sub">
+          ${escapeHtml(item.date||"")}
+        </div>
+
+        <div class="item-title">
+          ${escapeHtml(item.name)}
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(item.type||"專輯")}
+        </span>
+
+        <div class="item-content">
+
+          ${
+            item.songs
+            ?`🎵<br>${escapeHtml(item.songs)}`
+            :""
+          }
+
+          ${
+            item.description
+            ?`<br><br>${escapeHtml(item.description)}`
+            :""
+          }
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="small-btn"
+            onclick="openAlbumForm(${index})">
+            ✏️ 編輯
+          </button>
+
+          <button
+            class="small-btn delete-btn"
+            onclick="deleteAlbum(${index})">
+            🗑️ 刪除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* STAGES */
+
+function openStageForm(index=-1){
+
+  editingStageIndex=index;
+
+  document
+    .getElementById("stageForm")
+    .classList.add("show");
+
+  if(index===-1){
+
+    document.getElementById("stageFormTitle")
+      .textContent="新增舞台";
+
+    [
+      "stageDate",
+      "stageProgram",
+      "stageSong",
+      "stageLink",
+      "stageDescription"
+    ].forEach(id=>{
+      document.getElementById(id).value="";
+    });
+
+  }else{
+
+    const item=siteData.stages[index];
+
+    document.getElementById("stageFormTitle")
+      .textContent="編輯舞台";
+
+    document.getElementById("stageDate").value=item.date||"";
+    document.getElementById("stageProgram").value=item.program||"";
+    document.getElementById("stageSong").value=item.song||"";
+    document.getElementById("stageLink").value=item.link||"";
+    document.getElementById("stageDescription").value=item.description||"";
+
+  }
+
+}
+
+
+function closeStageForm(){
+
+  editingStageIndex=-1;
+
+  document
+    .getElementById("stageForm")
+    .classList.remove("show");
+
+}
+
+
+async function saveStage(){
+
+  const item={
+
+    date:document
+      .getElementById("stageDate").value,
+
+    program:document
+      .getElementById("stageProgram").value.trim(),
+
+    song:document
+      .getElementById("stageSong").value.trim(),
+
+    link:document
+      .getElementById("stageLink").value.trim(),
+
+    description:document
+      .getElementById("stageDescription").value.trim()
+
+  };
+
+  if(!item.date||!item.program){
+
+    alert("請至少填寫日期和節目／活動。");
+    return;
+
+  }
+
+  if(editingStageIndex===-1){
+
+    siteData.stages.push(item);
+
+  }else{
+
+    siteData.stages[editingStageIndex]=item;
+
+  }
+
+  try{
+
+    await saveSiteData();
+
+    closeStageForm();
+
+    renderStages();
+
+    showStatus("舞台資料已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+async function deleteStage(index){
+
+  if(!confirm("確定要刪除這個舞台嗎？"))
+    return;
+
+  siteData.stages.splice(index,1);
+
+  try{
+
+    await saveSiteData();
+
+    renderStages();
+
+    showStatus("舞台已刪除！");
+
+  }catch(error){
+
+    alert("刪除失敗："+error.message);
+
+  }
+
+}
+
+
+function renderStages(){
+
+  const list=
+    document.getElementById("stageList");
+
+  if(!siteData.stages.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px">🎤</div>
+        <strong>目前還沒有舞台資料</strong>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML=
+    siteData.stages.map((item,index)=>`
+
+      <div class="item">
+
+        <div class="item-sub">
+          ${escapeHtml(item.date||"")}
+        </div>
+
+        <div class="item-title">
+          ${escapeHtml(item.program||"")}
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(item.song||"未填寫歌曲")}
+        </span>
+
+        <div class="item-content">
+          ${escapeHtml(item.description||"")}
+        </div>
+
+        ${
+          item.link
+          ?`
+            <div class="item-sub">
+              🔗 ${escapeHtml(item.link)}
+            </div>
+          `
+          :""
+        }
+
+        <div class="actions">
+
+          <button
+            class="small-btn"
+            onclick="openStageForm(${index})">
+            ✏️ 編輯
+          </button>
+
+          <button
+            class="small-btn delete-btn"
+            onclick="deleteStage(${index})">
+            🗑️ 刪除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* SOCIAL */
+
+function openSocialForm(index=-1){
+
+  editingSocialIndex=index;
+
+  document
+    .getElementById("socialForm")
+    .classList.add("show");
+
+  if(index===-1){
+
+    document.getElementById("socialFormTitle")
+      .textContent="新增 SNS";
+
+    document.getElementById("socialPlatform").value="YouTube";
+    document.getElementById("socialName").value="";
+    document.getElementById("socialUrl").value="";
+
+  }else{
+
+    const item=siteData.social[index];
+
+    document.getElementById("socialFormTitle")
+      .textContent="編輯 SNS";
+
+    document.getElementById("socialPlatform").value=item.platform||"YouTube";
+    document.getElementById("socialName").value=item.name||"";
+    document.getElementById("socialUrl").value=item.url||"";
+
+  }
+
+}
+
+
+function closeSocialForm(){
+
+  editingSocialIndex=-1;
+
+  document
+    .getElementById("socialForm")
+    .classList.remove("show");
+
+}
+
+
+async function saveSocial(){
+
+  const item={
+
+    platform:document
+      .getElementById("socialPlatform").value,
+
+    name:document
+      .getElementById("socialName").value.trim(),
+
+    url:document
+      .getElementById("socialUrl").value.trim()
+
+  };
+
+  if(!item.name||!item.url){
+
+    alert("請填寫名稱和網址。");
+    return;
+
+  }
+
+  if(editingSocialIndex===-1){
+
+    siteData.social.push(item);
+
+  }else{
+
+    siteData.social[editingSocialIndex]=item;
+
+  }
+
+  try{
+
+    await saveSiteData();
+
+    closeSocialForm();
+
+    renderSocial();
+
+    showStatus("SNS 資料已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+async function deleteSocial(index){
+
+  if(!confirm("確定要刪除這個 SNS 嗎？"))
+    return;
+
+  siteData.social.splice(index,1);
+
+  try{
+
+    await saveSiteData();
+
+    renderSocial();
+
+    showStatus("SNS 已刪除！");
+
+  }catch(error){
+
+    alert("刪除失敗："+error.message);
+
+  }
+
+}
+
+
+function renderSocial(){
+
+  const list=
+    document.getElementById("socialList");
+
+  if(!siteData.social.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px">📱</div>
+        <strong>目前還沒有 SNS 資料</strong>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML=
+    siteData.social.map((item,index)=>`
+
+      <div class="item">
+
+        <div class="item-sub">
+          ${escapeHtml(item.platform||"")}
+        </div>
+
+        <div class="item-title">
+          ${escapeHtml(item.name||"")}
+        </div>
+
+        <div class="item-content">
+          ${escapeHtml(item.url||"")}
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="small-btn"
+            onclick="openSocialForm(${index})">
+            ✏️ 編輯
+          </button>
+
+          <button
+            class="small-btn delete-btn"
+            onclick="deleteSocial(${index})">
+            🗑️ 刪除
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* LANGUAGE */
+
+function selectLanguage(language,button){
+
+  currentLanguage=language;
+
+  document
+    .querySelectorAll(".language-button")
+    .forEach(item=>{
+      item.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  loadLanguage();
+
+}
+
+
+function loadLanguage(){
+
+  if(!siteData.languages){
+    siteData.languages={};
+  }
+
+  if(!siteData.languages[currentLanguage]){
+    siteData.languages[currentLanguage]={};
+  }
+
+  const data=
+    siteData.languages[currentLanguage];
+
+  document.getElementById("languageSiteName").value=
+    data.siteName||"";
+
+  document.getElementById("languageDescription").value=
+    data.description||"";
+
+}
+
+
+async function saveLanguage(){
+
+  if(!siteData.languages){
+    siteData.languages={};
+  }
+
+  siteData.languages[currentLanguage]={
+
+    siteName:
+      document.getElementById("languageSiteName").value.trim(),
+
+    description:
+      document.getElementById("languageDescription").value.trim()
+
+  };
+
+  try{
+
+    await saveSiteData();
+
+    showStatus("語言內容已儲存！");
+
+  }catch(error){
+
+    alert("儲存失敗："+error.message);
+
+  }
+
+}
+
+
+/* STATUS */
+
+function showStatus(text){
+
+  const element=
+    document.getElementById("status");
+
+  element.textContent=text;
+  element.style.display="block";
+
+  setTimeout(()=>{
+    element.style.display="none";
+  },2500);
+
+}
+
+
+/* DATE */
+
+function formatDate(date){
+
+  if(!date) return "";
+
+  const parts=date.split("-");
+
+  if(parts.length!==3) return date;
+
+  return `${parts[0]}/${parts[1]}/${parts[2]}`;
+
+}
+
+
+/* ESCAPE */
+
+function escapeHtml(value){
+
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* LOGOUT */
 
 async function logout(){
 
@@ -1329,52 +2548,6 @@ async function logout(){
   }
 
   location.reload();
-
-}
-
-
-/* =========================
-   儲存提示
-========================= */
-
-function showStatus(text){
-
-  const status=
-    document.getElementById("saveStatus");
-
-  status.textContent=text;
-  status.style.display="block";
-
-  setTimeout(()=>{
-    status.style.display="none";
-  },2500);
-
-}
-
-
-/* =========================
-   防止 HTML 注入
-========================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeAttribute(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
 
 }
 
