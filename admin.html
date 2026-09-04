@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理員｜BOYNEXTDOOR 記憶資料庫</title>
+
+<style>
+:root {
+  --blue: #01A3DB;
+  --blue-dark: #08799F;
+  --blue-light: #EAF8FD;
+  --line: #D5EAF2;
+  --text: #183040;
+  --gray: #718493;
+  --white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+  background: #F5FBFE;
+  color: var(--text);
+}
+
+header {
+  background: var(--blue);
+  color: white;
+  padding: 28px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+header p {
+  margin: 8px 0 0;
+  opacity: .9;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(1,163,219,.06);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 20px;
+  background: var(--blue);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--blue-dark);
+}
+
+.secondary {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+}
+
+.danger {
+  background: #f5f5f5;
+  color: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+.status {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  color: var(--blue-dark);
+}
+
+.login-box {
+  max-width: 430px;
+  margin: 70px auto;
+  padding: 0 18px;
+}
+
+.login-box .card {
+  padding: 30px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logo span {
+  display: block;
+  color: var(--blue);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.top-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.tab-buttons button {
+  white-space: nowrap;
+}
+
+.tab-buttons button.active {
+  background: var(--blue-dark);
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginPage" class="login-box">
+
+  <div class="logo">
+    <span>BOYNEXTDOOR FAN ARCHIVE</span>
+    <h1>管理員登入</h1>
+  </div>
+
+  <div class="card">
+
+    <label>帳號</label>
+    <input id="username" type="text" autocomplete="username">
+
+    <label>密碼</label>
+    <input id="password" type="password" autocomplete="current-password">
+
+    <div style="margin-top:20px;">
+      <button onclick="login()" style="width:100%;">
+        登入後台
+      </button>
+    </div>
+
+    <div id="loginStatus"></div>
+
+  </div>
+</div>
+
+
+<div id="adminPage" class="hidden">
+
+  <header>
+    <div class="container">
+      <h1>BOYNEXTDOOR 記憶資料庫</h1>
+      <p>管理員後台</p>
+
+      <div class="top-actions">
+        <button class="secondary" onclick="loadData()">
+          重新載入
+        </button>
+
+        <button class="danger" onclick="logout()">
+          登出
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="container">
+
+    <div class="card">
+
+      <h2>資料管理</h2>
+
+      <p style="color:#718493;">
+        這裡可以管理網站目前使用的資料。
+      </p>
+
+      <div class="tab-buttons">
+
+        <button onclick="showTab('memory')" class="active">
+          每日記憶
+        </button>
+
+        <button onclick="showTab('members')">
+          成員
+        </button>
+
+        <button onclick="showTab('albums')">
+          專輯
+        </button>
+
+        <button onclick="showTab('stages')">
+          舞台
+        </button>
+
+        <button onclick="showTab('social')">
+          社群
+        </button>
+
+        <button onclick="showTab('languages')">
+          語言
+        </button>
+
+      </div>
+
+
+      <section id="memory" class="tab">
+
+        <h2>📅 每日記憶</h2>
+
+        <label>資料</label>
+
+        <textarea id="memoryData"
+placeholder='例如：
+[
+  {
+    "date": "2023-05-30",
+    "title": "BOYNEXTDOOR 出道",
+    "content": "BOYNEXTDOOR 正式出道。"
+  }
+]'></textarea>
+
+      </section>
+
+
+      <section id="members" class="tab hidden">
+
+        <h2>👥 成員資料</h2>
+
+        <label>資料</label>
+
+        <textarea id="membersData"
+placeholder='例如：
+[
+  {
+    "name": "SUNGHO",
+    "chinese": "成淏",
+    "birth": "",
+    "height": "",
+    "emoji": "",
+    "tmi": ""
+  }
+]'></textarea>
+
+      </section>
+
+
+      <section id="albums" class="tab hidden">
+
+        <h2>💿 歷代專輯</h2>
+
+        <label>資料</label>
+
+        <textarea id="albumsData"
+placeholder='例如：
+[
+  {
+    "title": "WHO!",
+    "date": "2023-05-30",
+    "type": "Single Album"
+  }
+]'></textarea>
+
+      </section>
+
+
+      <section id="stages" class="tab hidden">
+
+        <h2>🎤 歷年舞台</h2>
+
+        <label>資料</label>
+
+        <textarea id="stagesData"
+placeholder='例如：
+[
+  {
+    "date": "2023-05-30",
+    "title": "BOYNEXTDOOR Debut Stage",
+    "event": ""
+  }
+]'></textarea>
+
+      </section>
+
+
+      <section id="social" class="tab hidden">
+
+        <h2>📱 社群紀錄</h2>
+
+        <label>資料</label>
+
+        <textarea id="socialData"
+placeholder='例如：
+[
+  {
+    "date": "2023-05-30",
+    "platform": "YouTube",
+    "title": "",
+    "url": ""
+  }
+]'></textarea>
+
+      </section>
+
+
+      <section id="languages" class="tab hidden">
+
+        <h2>🌐 語言內容</h2>
+
+        <label>資料</label>
+
+        <textarea id="languagesData"
+placeholder='例如：
+{
+  "zh-Hant": {},
+  "zh-Hans": {},
+  "en": {},
+  "ja": {},
+  "ko": {}
+}'></textarea>
+
+      </section>
+
+
+      <div style="margin-top:25px;">
+
+        <button onclick="saveData()">
+          儲存所有資料
+        </button>
+
+      </div>
+
+      <div id="saveStatus"></div>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<script>
+
+let currentData = {
+  memory: [],
+  members: [],
+  albums: [],
+  stages: [],
+  social: [],
+  languages: {
+    "zh-Hant": {},
+    "zh-Hans": {},
+    "en": {},
+    "ja": {},
+    "ko": {}
+  }
+};
+
+
+async function login() {
+
+  const username =
+    document.getElementById("username").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const status =
+    document.getElementById("loginStatus");
+
+  status.innerHTML = "";
+
+  if (!username || !password) {
+
+    status.innerHTML =
+      '<div class="status">請輸入帳號和密碼。</div>';
+
+    return;
+  }
+
+  try {
+
+    const response = await fetch("/api/admin", {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        action: "login",
+        username,
+        password
+      })
+
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+
+      status.innerHTML =
+        '<div class="status">' +
+        (result.message || "登入失敗") +
+        '</div>';
+
+      return;
+    }
+
+    document.getElementById("loginPage")
+      .classList.add("hidden");
+
+    document.getElementById("adminPage")
+      .classList.remove("hidden");
+
+    await loadData();
+
+  } catch (error) {
+
+    status.innerHTML =
+      '<div class="status">無法連接伺服器。</div>';
+
+  }
+}
+
+
+async function loadData() {
+
+  const response =
+    await fetch("/api/admin?action=data");
+
+  if (response.status === 401) {
+
+    logout();
+    return;
+
+  }
+
+  const result =
+    await response.json();
+
+  currentData = result.data || currentData;
+
+  document.getElementById("memoryData").value =
+    JSON.stringify(currentData.memory || [], null, 2);
+
+  document.getElementById("membersData").value =
+    JSON.stringify(currentData.members || [], null, 2);
+
+  document.getElementById("albumsData").value =
+    JSON.stringify(currentData.albums || [], null, 2);
+
+  document.getElementById("stagesData").value =
+    JSON.stringify(currentData.stages || [], null, 2);
+
+  document.getElementById("socialData").value =
+    JSON.stringify(currentData.social || [], null, 2);
+
+  document.getElementById("languagesData").value =
+    JSON.stringify(currentData.languages || {}, null, 2);
+}
+
+
+async function saveData() {
+
+  const status =
+    document.getElementById("saveStatus");
+
+  try {
+
+    const newData = {
+
+      memory:
+        JSON.parse(
+          document.getElementById("memoryData").value
+        ),
+
+      members:
+        JSON.parse(
+          document.getElementById("membersData").value
+        ),
+
+      albums:
+        JSON.parse(
+          document.getElementById("albumsData").value
+        ),
+
+      stages:
+        JSON.parse(
+          document.getElementById("stagesData").value
+        ),
+
+      social:
+        JSON.parse(
+          document.getElementById("socialData").value
+        ),
+
+      languages:
+        JSON.parse(
+          document.getElementById("languagesData").value
+        )
+
+    };
+
+
+    const response = await fetch("/api/admin", {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        action: "save",
+        data: newData
+      })
+
+    });
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      status.innerHTML =
+        '<div class="status">' +
+        (result.message || "儲存失敗") +
+        '</div>';
+
+      return;
+
+    }
+
+
+    status.innerHTML =
+      '<div class="status">✓ 資料已成功儲存！</div>';
+
+
+  } catch (error) {
+
+    status.innerHTML =
+      '<div class="status">資料格式有錯，請檢查 JSON。</div>';
+
+  }
+}
+
+
+function showTab(id) {
+
+  document.querySelectorAll(".tab")
+    .forEach(tab => {
+      tab.classList.add("hidden");
+    });
+
+  document.getElementById(id)
+    .classList.remove("hidden");
+
+  document.querySelectorAll(".tab-buttons button")
+    .forEach(button => {
+      button.classList.remove("active");
+    });
+
+  event.target.classList.add("active");
+}
+
+
+function logout() {
+
+  fetch("/api/admin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      action: "logout"
+    })
+  }).finally(() => {
+
+    location.reload();
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
