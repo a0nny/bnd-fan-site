@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BOYNEXTDOOR — FAN ARCHIVE</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f7faff;
+      color: #172033;
+      font-family: Arial, "Noto Sans TC", sans-serif;
+    }
+
+    /* ====================
+       NAV
+    ==================== */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      height: 72px;
+      padding: 0 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(247, 250, 255, 0.94);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid #dce7f5;
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #1b4f91;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #53657e;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #397dcc;
+    }
+
+    /* ====================
+       HERO
+    ==================== */
+
+    .hero {
+      min-height: calc(100vh - 72px);
+
+      padding: 8vh 6% 5vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      background:
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(125, 183, 244, 0.22),
+          transparent 28%
+        ),
+        #f7faff;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .mini {
+      font-size: 10px;
+      color: #7890ae;
+      letter-spacing: 2px;
+    }
+
+    .hero-main {
+      margin-top: 50px;
+    }
+
+    .korean {
+      color: #397dcc;
+      font-size: 12px;
+      letter-spacing: 4px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 11vw, 145px);
+      line-height: 0.83;
+      letter-spacing: -7px;
+      font-weight: 800;
+      color: #15243a;
+    }
+
+    .hero-description {
+      max-width: 450px;
+      margin-top: 35px;
+
+      font-size: 13px;
+      line-height: 2;
+      color: #6c7d95;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding-top: 20px;
+      border-top: 1px solid #d6e1ef;
+    }
+
+    .scroll {
+      color: #397dcc;
+      animation: floating 1.8s infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    /* ====================
+       SECTION
+    ==================== */
+
+    section {
+      padding: 110px 6%;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+
+      padding-bottom: 16px;
+      margin-bottom: 45px;
+
+      border-bottom: 1px solid #cddaea;
+    }
+
+    .section-header h2 {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .section-header span {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #7d90a8;
+    }
+
+    /* ====================
+       LATEST
+    ==================== */
+
+    .latest {
+      background: #edf5ff;
+    }
+
+    .latest-card {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+
+      min-height: 330px;
+
+      border: 1px solid #d1e0f2;
+      background: #fafdff;
+    }
+
+    .latest-image {
+      min-height: 330px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d9eaff,
+          #a9cdef
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #ffffff;
+      font-size: 12px;
+      letter-spacing: 3px;
+    }
+
+    .latest-content {
+      padding: 45px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .date {
+      color: #4e8bd1;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .latest-content h3 {
+      margin-top: 18px;
+      font-size: 30px;
+      line-height: 1.25;
+    }
+
+    .latest-content p {
+      margin-top: 18px;
+      color: #71839a;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* ====================
+       MEMBERS
+    ==================== */
+
+    .members {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .member {
+      position: relative;
+
+      aspect-ratio: 1 / 1.18;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          #dcecff,
+          #a8ccef
+        );
+
+      transition: 0.3s;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+    }
+
+    .member-number {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .member-info {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+
+      color: white;
+    }
+
+    .member-info h3 {
+      font-size: 25px;
+      letter-spacing: 1px;
+    }
+
+    .member-info p {
+      margin-top: 5px;
+
+      font-size: 10px;
+      letter-spacing: 2px;
+
+      opacity: 0.85;
+    }
+
+    /* ====================
+       ARCHIVE
+    ==================== */
+
+    .archive {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      border: 1px solid #cad9eb;
+    }
+
+    .archive-item {
+      min-height: 190px;
+
+      padding: 35px;
+
+      background: #fafdff;
+
+      border-right: 1px solid #cad9eb;
+      border-bottom: 1px solid #cad9eb;
+
+      transition: 0.3s;
+
+      cursor: pointer;
+    }
+
+    .archive-item:hover {
+      background: #e7f2ff;
+    }
+
+    .archive-item small {
+      color: #6f8cab;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .archive-item h3 {
+      margin-top: 30px;
+
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .archive-item p {
+      margin-top: 12px;
+
+      color: #8293a9;
+      font-size: 12px;
+    }
+
+    /* ====================
+       ABOUT
+    ==================== */
+
+    .about {
+      background: #172b45;
+      color: white;
+    }
+
+    .about .section-header {
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .about .section-header span {
+      color: #9bb8d8;
+    }
+
+    .about-text {
+      max-width: 720px;
+
+      font-size: 18px;
+      line-height: 2;
+
+      color: #c8d8e9;
+    }
+
+    /* ====================
+       FOOTER
+    ==================== */
+
+    footer {
+      padding: 45px 6%;
+
+      display: flex;
+      justify-content: space-between;
+
+      background: #102238;
+
+      color: #7890aa;
+
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+
+    /* ====================
+       MOBILE
+    ==================== */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 0 5%;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 9px;
+      }
+
+      .hero {
+        padding: 7vh 5% 5vh;
+      }
+
+      .hero h1 {
+        font-size: 19vw;
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 75px 5%;
+      }
+
+      .section-header h2 {
+        font-size: 30px;
+      }
+
+      .latest-card {
+        grid-template-columns: 1fr;
+      }
+
+      .latest-image {
+        min-height: 230px;
+      }
+
+      .latest-content {
+        padding: 30px;
+      }
+
+      .members {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .member-info {
+        left: 13px;
+        bottom: 15px;
+      }
+
+      .member-info h3 {
+        font-size: 16px;
+      }
+
+      .archive {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-item {
+        border-right: none;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ====================
+       NAVIGATION
+  ==================== -->
+
+  <nav>
+
+    <div class="logo">
+      BND / ARCHIVE
+    </div>
+
+    <ul class="nav-links">
+      <li>
+        <a href="#latest">LATEST</a>
+      </li>
+
+      <li>
+        <a href="#members">MEMBERS</a>
+      </li>
+
+      <li>
+        <a href="#archive">ARCHIVE</a>
+      </li>
+
+      <li>
+        <a href="#about">ABOUT</a>
+      </li>
+    </ul>
+
+  </nav>
+
+
+  <!-- ====================
+       HERO
+  ==================== -->
+
+  <main class="hero">
+
+    <div class="hero-top">
+
+      <span class="mini">
+        FAN ARCHIVE · 2026
+      </span>
+
+      <span class="mini">
+        ONEDOOR
+      </span>
+
+    </div>
+
+
+    <div class="hero-main">
+
+      <div class="korean">
+        보이넥스트도어
+      </div>
+
+      <h1>
+        BOYNEXT<br>
+        DOOR
+      </h1>
+
+      <p class="hero-description">
+        A fan-made archive dedicated to
+        BOYNEXTDOOR — their music, moments,
+        activities and memories shared with ONEDOOR.
+      </p>
+
+    </div>
+
+
+    <div class="hero-bottom">
+
+      <span class="mini">
+        WHO'S THERE?
+      </span>
+
+      <span class="mini scroll">
+        ↓ SCROLL
+      </span>
+
+    </div>
+
+  </main>
+
+
+  <!-- ====================
+       LATEST
+  ==================== -->
+
+  <section class="latest" id="latest">
+
+    <div class="section-header">
+
+      <h2>
+        Latest
+      </h2>
+
+      <span>
+        RECENT UPDATE
+      </span>
+
+    </div>
+
+
+    <div class="latest-card">
+
+      <div class="latest-image">
+        IMAGE
+      </div>
+
+      <div class="latest-content">
+
+        <span class="date">
+          2026.09.04
+        </span>
+
+        <h3>
+          BOYNEXTDOOR
+          <br>
+          FAN ARCHIVE
+        </h3>
+
+        <p>
+          Welcome to our little archive.
+          More memories, schedules and updates
+          will be added here.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ====================
+       MEMBERS
+  ==================== -->
+
+  <section id="members">
+
+    <div class="section-header">
+
+      <h2>
+        Members
+      </h2>
+
+      <span>
+        06 MEMBERS
+      </span>
+
+    </div>
+
+
+    <div class="members">
+
+      <div class="member">
+
+        <span class="member-number">
+          01
+        </span>
+
+        <div class="member-info">
+          <h3>SUNGHO</h3>
+          <p>성호</p>
+        </div>
+
+      </div>
+
+
+      <div class="member">
+
+        <span class="member-number">
+          02
+        </span>
+
+        <div class="member-info">
+          <h3>RIWOO</h3>
+          <p>리우</p>
+        </div>
+
+      </div>
+
+
+      <div class="member">
+
+        <span class="member-number">
+          03
+        </span>
+
+        <div class="member-info">
+          <h3>JAEHYUN</h3>
+          <p>재현</p>
+        </div>
+
+      </div>
+
+
+      <div class="member">
+
+        <span class="member-number">
+          04
+        </span>
+
+        <div class="member-info">
+          <h3>TAESAN</h3>
+          <p>태산</p>
+        </div>
+
+      </div>
+
+
+      <div class="member">
+
+        <span class="member-number">
+          05
+        </span>
+
+        <div class="member-info">
+          <h3>LEEHAN</h3>
+          <p>이한</p>
+        </div>
+
+      </div>
+
+
+      <div class="member">
+
+        <span class="member-number">
+          06
+        </span>
+
+        <div class="member-info">
+          <h3>WOONHAK</h3>
+          <p>운학</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ====================
+       ARCHIVE
+  ==================== -->
+
+  <section id="archive">
+
+    <div class="section-header">
+
+      <h2>
+        Archive
+      </h2>
+
+      <span>
+        ONEDOOR'S RECORD
+      </span>
+
+    </div>
+
+
+    <div class="archive">
+
+      <div class="archive-item">
+
+        <small>
+          01 / DISCOGRAPHY
+        </small>
+
+        <h3>
+          Albums & Songs →
+        </h3>
+
+        <p>
+          Explore their music.
+        </p>
+
+      </div>
+
+
+      <div class="archive-item">
+
+        <small>
+          02 / SCHEDULE
+        </small>
+
+        <h3>
+          Events & Activities →
+        </h3>
+
+        <p>
+          Keep track of every moment.
+        </p>
+
+      </div>
+
+
+      <div class="archive-item">
+
+        <small>
+          03 / GALLERY
+        </small>
+
+        <h3>
+          Photos & Memories →
+        </h3>
+
+        <p>
+          A collection of our memories.
+        </p>
+
+      </div>
+
+
+      <div class="archive-item">
+
+        <small>
+          04 / VIDEOS
+        </small>
+
+        <h3>
+          MV & Contents →
+        </h3>
+
+        <p>
+          Music videos and contents.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ====================
+       ABOUT
+  ==================== -->
+
+  <section class="about" id="about">
+
+    <div class="section-header">
+
+      <h2>
+        About
+      </h2>
+
+      <span>
+        FAN-MADE
+      </span>
+
+    </div>
+
+
+    <p class="about-text">
+
+      This is a fan-made archive created
+      for BOYNEXTDOOR and ONEDOOR.
+
+      <br><br>
+
+      This website is not affiliated with
+      KOZ Entertainment or BOYNEXTDOOR.
+
+    </p>
+
+  </section>
+
+
+  <!-- ====================
+       FOOTER
+  ==================== -->
+
+  <footer>
+
+    <span>
+      BOYNEXTDOOR FAN ARCHIVE
+    </span>
+
+    <span>
+      MADE WITH ♡ FOR ONEDOOR
+    </span>
+
+  </footer>
+
+</body>
+</html>
